@@ -2,7 +2,7 @@ import { Link } from 'react-router';
 import "../../styles/App.css"
 import Toolbar from './Toolbar';
 
-export default function Header({setSort, sort, searchParams, setSearchParams, setPropTypeFilter, propTypefilter, property_type}) {
+export default function Header({setSort, sort, searchParams, setSearchParams, property_type}) {
   console.log("sort Header", sort)
   return (
     <>
@@ -13,18 +13,6 @@ export default function Header({setSort, sort, searchParams, setSearchParams, se
           <option value="host">Host</option>
         </select>
       </nav>
-      <Toolbar 
-      setSort={setSort} 
-      sort={sort} 
-      searchParams={searchParams}
-      setSearchParams={setSearchParams}
-      property_type={property_type}
-
-      setPropTypeFilter={setPropTypeFilter} 
-      propTypefilter={propTypefilter}/>
-      <div className='container'>
-        <button style={{margin: "0 auto"}}><Link to="/properties">View All Properties</Link></button>
-    </div >
     </>
     
   )

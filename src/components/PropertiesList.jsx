@@ -1,5 +1,6 @@
 
 import '../../styles/App.css'
+import { Link } from 'react-router'
 
 export default function PropertiesList({properties}) {
 
@@ -10,7 +11,7 @@ export default function PropertiesList({properties}) {
           <p>{property.property_id}</p>
           <h2>{property.property_name}</h2>
           <p>{property.property_type}</p>
-          <img style={{width: "300px"}}src={property.image} alt="" />
+          <Link to={`/properties/${property.property_id}`}><img style={{width: "300px"}}src={property.image} alt="" /></Link>
           <p>{property.price_per_night}</p>
         </li>
       })}

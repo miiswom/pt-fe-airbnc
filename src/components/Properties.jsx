@@ -3,15 +3,13 @@ import axios from 'axios';
 import "../../styles/App.css";
 import Header from "./Header";
 import PropertiesList from "./PropertiesList";
+import Toolbar from "./Toolbar";
 
-export default function Properties({setSort, sort, searchParams, setSearchParams, setPropTypeFilter, propTypeFilter, property_type}) {
+export default function Properties({setSort, sort, searchParams, setSearchParams, property_type}) {
   const [properties, setProperties] = useState([])
-  console.log("properties", property_type)
+  // console.log("properties", property_type)
   // console.log("properties", properties)
   // console.log("properties sort", sort)
-  // console.log("properties propTypeFilter", propTypeFilter)
-  // console.log("properties propTypeFilter length", propTypeFilter.length)
-
 
   useEffect(()=>{
     fetch(`https://pt-be-airbnc.onrender.com/api/properties?sort=${sort}`)
@@ -19,6 +17,7 @@ export default function Properties({setSort, sort, searchParams, setSearchParams
     .then((data) => {
       const ids = []
       const props = []
+      // removing the duplicate properties by id 
       data.properties.map((property) => {
         if(!ids.includes(property.property_id)) {
           ids.push(property.property_id)
@@ -29,6 +28,7 @@ export default function Properties({setSort, sort, searchParams, setSearchParams
         return a[sort] < b[sort] ? 1 : 1
       }
     )
+    // using the property_type params
       if(property_type.length > 0) {
         const filtered = props.filter((prop) => prop.property_type.toLowerCase() === property_type)
         console.log("filtered?", filtered)
@@ -48,11 +48,17 @@ export default function Properties({setSort, sort, searchParams, setSearchParams
     sort={sort} 
     searchParams={searchParams}
     setSearchParams={setSearchParams}
-
-    setPropTypeFilter={setPropTypeFilter}
-    propTypeFilter={propTypeFilter}/>
+    />
+    <Toolbar 
+    setSort={setSort} 
+    sort={sort} 
+    searchParams={searchParams}
+    setSearchParams={setSearchParams}
+    property_type={property_type}
+    />
     <div className="container">
-      <PropertiesList properties={properties} propTypeFilter={propTypeFilter}/>
+      <PropertiesList 
+      properties={properties} />
     </div>
     </>
   )
