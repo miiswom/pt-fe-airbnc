@@ -4,8 +4,9 @@ import "../../styles/App.css";
 import Header from "./Header";
 import PropertiesList from "./PropertiesList";
 
-export default function Properties({setSort, sort, searchParams, setSearchParams, setPropTypeFilter, propTypeFilter}) {
+export default function Properties({setSort, sort, searchParams, setSearchParams, setPropTypeFilter, propTypeFilter, property_type}) {
   const [properties, setProperties] = useState([])
+  console.log("properties", property_type)
   // console.log("properties", properties)
   // console.log("properties sort", sort)
   // console.log("properties propTypeFilter", propTypeFilter)
@@ -28,15 +29,17 @@ export default function Properties({setSort, sort, searchParams, setSearchParams
         return a[sort] < b[sort] ? 1 : 1
       }
     )
-      if(propTypeFilter.length > 0) {
-        const filtered = props.filter((prop) => prop.property_type === propTypeFilter)
+      if(property_type.length > 0) {
+        const filtered = props.filter((prop) => prop.property_type.toLowerCase() === property_type)
+        console.log("filtered?", filtered)
         setProperties(filtered)
+        // setSearchParams({property_type: property_type})
         // searchParams.get()
       } else {
         setProperties(props)
       }
     })
-  }, [sort, propTypeFilter])
+  }, [sort, property_type])
 
   return (
     <>

@@ -11,13 +11,14 @@ export default function Toolbar({setSort, sort, searchParams,setSearchParams, se
   function handleFilter(e) {
     console.log("e.target.value", e.target.value)
     setPropTypeFilter(e.target.value) 
+    setSearchParams({property_type: e.target.value.toLowerCase()})
   }
   
   return (
     <div className="container row">
       <div className="custom-toolbar row">
         <p>Filter by property type &nbsp;</p>
-        <select dvalue={propTypeFilter} onChange={handleFilter}>
+        <select value={propTypeFilter} onChange={handleFilter}>
           <option value="" defaultValue={""}></option>
           <option value="Apartment">Apartment</option>
           <option value="House">House</option>

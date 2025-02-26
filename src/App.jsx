@@ -9,9 +9,11 @@ function App() {
   const [sort, setSort] = useState("property_id")
   const [propTypeFilter, setPropTypeFilter] = useState("") 
   const [searchParams, setSearchParams] = useSearchParams()
+
+  const property_type = searchParams.get("property_type")
   console.log("App sort", sort)
   console.log("App propTypeFilter", propTypeFilter)
-  console.log("App searchParams", searchParams)
+  console.log("App searchParams", searchParams.get('property_type'))
 
   return (
     <Routes>
@@ -22,7 +24,8 @@ function App() {
           sort={sort}
           searchParams={searchParams}
           setSearchParams={setSearchParams}
-          
+          property_type={property_type}
+
           setPropTypeFilter={setPropTypeFilter}
           propTypefilter={propTypeFilter} />} />
 
@@ -33,6 +36,7 @@ function App() {
           sort={sort}
           searchParams={searchParams}
           setSearchParams={setSearchParams}
+          property_type={property_type}
 
           setPropTypeFilter={setPropTypeFilter}
           propTypeFilter={propTypeFilter} />} />
