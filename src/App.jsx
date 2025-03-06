@@ -44,3 +44,14 @@ function App() {
 }
 
 export default App
+
+
+// create an ExpandableReviews components
+// use composition* to 'show reviews' or 'hide reviews'
+// inside it, fetch all the reviews for a particular prop
+
+// create a PostReview button
+// create a FavouriteProperty button 
+// ---> to trigget an event 'OnClick'
+// ---> POST, update Database
+// --->

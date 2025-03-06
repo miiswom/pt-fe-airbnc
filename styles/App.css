@@ -22,24 +22,38 @@
 .column {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+}
+
+/* .reviews > * {
+  border: 1px solid red;
+} */
+
+.reviews {
+  justify-content: start;
+  gap: 10px;
+  border-radius: 10px;
+  border: 1px solid rgb(220, 220, 220);
+  max-width: 400px;
+  padding: 15px
+}
+
+.reviews p {
+  align-self: center;
 }
 
 .grid-container {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  align-items: center;
+  justify-items: center;
 }
 
 
 /******************************************
 /* LAYOUT
 /*******************************************/
-header {
 
-}
-
-footer {
-
-}
 
 /******************************************
 /* ADDITIONAL STYLES
@@ -48,3 +62,20 @@ footer {
 /* .custom-toolbar {
   margin: 0 auto;
 } */
+
+.favourited{
+  filter: invert(7%) sepia(89%) saturate(6270%) hue-rotate(351deg) brightness(134%) contrast(121%);
+  fill: red!important;
+  /* background-color: red; */
+}
+
+.property {
+  text-align: center;
+}
+
+.expandable {
+  background: inherit;
+  border: none;
+  border-bottom: 1px solid grey;
+  cursor:none;
+}
