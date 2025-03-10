@@ -8,7 +8,7 @@ export default function Expandable({children}) {
       return !current
     })
   }
-  return(
+  return (
     <>
     <button className='expandable' onClick={handleClick}>{showContent ? "Hide ":"View " }Reviews</button>
     {showContent ? children : null}

@@ -1,17 +1,13 @@
 import "../../styles/App.css"
-import {Link} from 'react-router'
-import { useState, useRef } from "react"
+import { useState } from "react"
 
-export default function Toolbar({setSort, sort, searchParams,setSearchParams, setPropTypeFilter, propTypeFilter}) {
-  console.log("Toolbar sort", sort)
-  const [selectVal, setSelectVal] = useState("...")
+export default function Toolbar({setSort, sort,setSearchParams}) {
+  const [selectVal, setSelectVal] = useState("")
   function handleSort(e) {
-    // console.log("e.target.value", e.target.value)
     setSort(e.target.value)
   }
 
   function handleFilter(e) {
-    console.log("e.target.value", e.target.value)
     setSelectVal(e.target.value)
     setSearchParams({property_type: e.target.value.toLowerCase()})
   }

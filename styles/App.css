@@ -6,6 +6,9 @@
 /******************************************
 /* BASE STYLES
 /*******************************************/
+a {
+  display: block;
+}
 
 .container {
   max-width: 95%;
@@ -65,8 +68,6 @@
 
 .favourited{
   filter: invert(7%) sepia(89%) saturate(6270%) hue-rotate(351deg) brightness(134%) contrast(121%);
-  fill: red!important;
-  /* background-color: red; */
 }
 
 .property {
