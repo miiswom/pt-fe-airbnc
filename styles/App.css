@@ -6,8 +6,10 @@
 /******************************************
 /* BASE STYLES
 /*******************************************/
-a {
+a, button {
+  margin: 0 auto;
   display: block;
+  margin-bottom: 15px;
 }
 
 .container {
@@ -52,6 +54,13 @@ a {
   justify-items: center;
 }
 
+.property-card {
+  padding: 5px;
+}
+
+.property-card-img {
+  border-radius: 10px;
+}
 
 /******************************************
 /* LAYOUT

@@ -4,9 +4,10 @@ import Header from "./Header";
 import PropertiesList from "./PropertiesList";
 import Toolbar from "./Toolbar";
 
-export default function Properties({setSort, sort, searchParams, setSearchParams, property_type}) {
+export default function Properties({setSort, sort, searchParams, setSearchParams, property_type, max_price, maxPriceRangeVal, setMaxPriceRangeVal}) {
   const [properties, setProperties] = useState([])
-
+  console.log("property_type II", property_type)
+  console.log("max_price II", Number(max_price))
   useEffect(()=>{
     fetch(`https://pt-be-airbnc.onrender.com/api/properties?sort=${sort}`)
     .then((res) => res.json())
@@ -24,15 +25,32 @@ export default function Properties({setSort, sort, searchParams, setSearchParams
         return a[sort] < b[sort] ? 1 : 1
       }
     )
+    console.log(props)
+
     // using the property_type params to filter
-      if(property_type.length > 0) {
-        const filtered = props.filter((prop) => prop.property_type.toLowerCase() === property_type)
-        setProperties(filtered)
-      } else {
+      if(property_type === "" || property_type === undefined) {
+        console.log("props")
         setProperties(props)
+      } else {
+        console.log("filteredProps")
+        console.log("property_type III", property_type)
+
+        const filteredProps = props.filter((prop) => prop.property_type === property_type)
+        if(Number(max_price) < 400) {
+          console.log("filteredProps max_price")
+          console.log("max_price III", max_price)
+  
+          const filteredPropssss = filteredProps.filter((prop) => Number(prop.price_per_night) < Number(max_price))
+          setProperties(filteredPropssss)
+        } else {
+          setProperties(filteredProps)
+        }
       }
+
+      // using the max_price params to filter
+      
     })
-  }, [sort, property_type])
+  }, [property_type, max_price])
 
   return (
     <>
@@ -48,6 +66,8 @@ export default function Properties({setSort, sort, searchParams, setSearchParams
     searchParams={searchParams}
     setSearchParams={setSearchParams}
     property_type={property_type}
+    maxPriceRangeVal={maxPriceRangeVal}
+    setMaxPriceRangeVal={setMaxPriceRangeVal}
     />
     <div className="container">
       <PropertiesList 

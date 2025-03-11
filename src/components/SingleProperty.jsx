@@ -1,15 +1,19 @@
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router'
 import Header from './Header'
-import HeartImage from "../../styles/assets/heart-svgrepo-com.svg";
 import "../../styles/App.css"
 import Expandable from './Expandable';
 import ReviewsList from "./ReviewsList"
+import FavouriteBtn from './FavouriteBtn';
+import BookingSection from './BookingSection';
+import { DatePicker } from '@mui/x-date-pickers';
+
 
 export default function SingleProperty() {
   const { property_id } = useParams()
   const [singleProperty, setSingleProperty] = useState("");
-  const [isFavourited, setIsFavourited] = useState(false)
+  const [isFavourited, setIsFavourited] = useState(false);
+  const [value, setValue] = useState()
 
   // fetching the single property data
   useEffect(() => {
@@ -33,52 +37,26 @@ export default function SingleProperty() {
       })
   }, []);
 
-  // onClick, toggle 'favourite' class and DELETE or POST a favourite
-  function toggleFavourite(e) {
-    if (isFavourited) {
-      e.target.classList.toggle("favourited")
-      fetch(`https://pt-be-airbnc.onrender.com/api/favourite`)
-        .then(res => res.json())
-        .then(data => {
-          for (let item of data.favourites) {
-            if (item.guest_id === 1 && item.property_id) {
-              fetch(`https://pt-be-airbnc.onrender.com/api/favourite/${item.favourite_id}`,
-                {
-                  method: "DELETE"
-                }).then(() => {
-                  alert("Property successfully unfavourited.")
-                  setIsFavourited(false)
-                })
-            }
-          }
-        })
-    } else if (!isFavourited) {
-      e.target.classList.toggle("favourited")
-      fetch(`https://pt-be-airbnc.onrender.com/api/properties/${property_id}/favourite`,
-        {
-          method: "POST",
-          headers: { "Content-type": "application/json" },
-          body: JSON.stringify({ guest_id: 1 })
-        })
-        .then(res => res.json())
-        .then(data => {
-          setIsFavourited(true)
-          alert(data.msg)
-        }
-        )
-    }
-  }
-
   return (
     <>
       <Header />
       <div className='container property'>
         <h2 style={{ fontWeight: "bold", fontSize: "2em", marginBottom: "20px" }}>{singleProperty.property_name}</h2>
-        <a><img onClick={(e) => toggleFavourite(e)} className={isFavourited ? "favourited" : null} style={{ width: "40px" }} src={HeartImage} alt="" /></a>
+        <FavouriteBtn
+          property_id={property_id}
+          isFavourited={isFavourited}
+          setIsFavourited={setIsFavourited} />
         <img style={{ maxWidth: "60%", marginBottom: "20px" }} src={singleProperty.images} alt="" />
         <p style={{ fontSize: "1.3em", marginBottom: "20px" }}>{singleProperty.description}</p>
+        
         <Expandable>
-          <ReviewsList property_id={property_id} />
+          <BookingSection>
+            <DatePicker/>
+          </BookingSection>
+        </Expandable>
+        
+        <Expandable>
+          <ReviewsList property_id={property_id} value={["Reviews"]} />
         </Expandable>
       </div>
     </>)
