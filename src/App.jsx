@@ -7,7 +7,7 @@ import { useState } from 'react'
 import SingleProperty from './components/SingleProperty'
 
 function App() {
-  const [sort, setSort] = useState("property_id");
+  const [sortValue, setSortValue] = useState("property_id");
   const [searchParams, setSearchParams] = useSearchParams(
     {
       property_type: "", 
@@ -21,8 +21,8 @@ function App() {
  
   
   {<Header
-    setSort={setSort}
-    sort={sort}
+    setSortValue={setSortValue}
+    sortValue={sortValue}
     searchParams={searchParams}
     setSearchParams={setSearchParams}
     // property_type={property_type}
@@ -34,8 +34,8 @@ function App() {
       <Route
         path='/'
         element={<Properties
-          setSort={setSort}
-          sort={sort}
+          setSortValue={setSortValue}
+          sortValue={sortValue}
           searchParams={searchParams}
           setSearchParams={setSearchParams}
           property_type={property_type}

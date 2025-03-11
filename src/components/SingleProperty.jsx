@@ -7,32 +7,26 @@ import ReviewsList from "./ReviewsList"
 import FavouriteBtn from './FavouriteBtn';
 import BookingSection from './BookingSection';
 import { DatePicker } from '@mui/x-date-pickers';
+import { fetchFavourites, fetchPropertyById } from '../utils/fetch';
 
 
 export default function SingleProperty() {
   const { property_id } = useParams()
   const [singleProperty, setSingleProperty] = useState("");
   const [isFavourited, setIsFavourited] = useState(false);
-  const [value, setValue] = useState()
 
   // fetching the single property data
   useEffect(() => {
-    fetch(`https://pt-be-airbnc.onrender.com/api/properties/${property_id}`)
-      .then(res => res.json())
-      .then(data => setSingleProperty(data.property))
+    fetchPropertyById(property_id)
+      .then(property => setSingleProperty(property))
   }, [])
 
   // fetching all favourites and check if 'favourited' className should be applied
   useEffect(() => {
-    fetch(`https://pt-be-airbnc.onrender.com/api/favourite`)
-      .then(res => res.json())
-      .then(data => {
-        for (let item of data.favourites) {
-          if (item.property_id === Number(property_id) && item.guest_id === 1) {
-            setIsFavourited(true)
-          } else {
-            setIsFavourited(false)
-          }
+    fetchFavourites()
+      .then(favourites => {
+        for (let item of favourites) {
+          item.property_id === Number(property_id) && item.guest_id === 1 ? setIsFavourited(true) : setIsFavourited(false)
         }
       })
   }, []);

@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
+import { fetchReviewsByPropertyId } from "../utils/fetch";
 
 export default function ReviewsList({ property_id }) {
   const [reviewsList, setReviewsList] = useState([])
 
   // fetch the reviews by property_id
   useEffect(() => {
-    fetch(`https://pt-be-airbnc.onrender.com/api/properties/${property_id}/reviews`)
-      .then(res => res.json())
-      .then(data => setReviewsList(data.reviews))
+    fetchReviewsByPropertyId(property_id)
+      .then(reviews => setReviewsList(reviews))
   }, [])
 
   return (
