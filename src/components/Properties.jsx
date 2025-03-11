@@ -28,10 +28,18 @@ export default function Properties({setSort, sort, searchParams, setSearchParams
     console.log(props)
 
     // using the property_type params to filter
-      if(property_type === "" || property_type === undefined) {
+      if(property_type === "" || property_type === undefined || property_type === null) {
         console.log("props")
-        setProperties(props)
-      } else {
+        if(Number(max_price) < 400) {
+          console.log("filteredProps max_price")
+          console.log("max_price III", max_price)
+  
+          const filteredPropssss = props.filter((prop) => Number(prop.price_per_night) < Number(max_price))
+          setProperties(filteredPropssss)
+        } else {
+          setProperties(props)
+        }
+      } else if(property_type.length > 0){
         console.log("filteredProps")
         console.log("property_type III", property_type)
 
@@ -45,6 +53,8 @@ export default function Properties({setSort, sort, searchParams, setSearchParams
         } else {
           setProperties(filteredProps)
         }
+      } else {
+        setProperties(props)
       }
 
       // using the max_price params to filter
