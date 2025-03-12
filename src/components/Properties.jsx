@@ -6,8 +6,7 @@ import Toolbar from "./Toolbar";
 
 export default function Properties({ setSortValue, sortValue, searchParams, setSearchParams, property_type, max_price, maxPriceRangeVal, setMaxPriceRangeVal }) {
   const [properties, setProperties] = useState([])
-  console.log("property_type II", property_type)
-  console.log("max_price II", Number(max_price))
+  // console.log("property_type II", property_type)
   
   useEffect(() => {
     fetch(`https://pt-be-airbnc.onrender.com/api/properties?sort=${sortValue}`)
@@ -27,11 +26,11 @@ export default function Properties({ setSortValue, sortValue, searchParams, setS
           return a[sortValue] < b[sortValue] ? 1 : 1
         }
         )
-        console.log(props)
+        console.log("props", props)
 
         // using the property_type params to filter
         if (property_type === "" || property_type === undefined || property_type === null) {
-          console.log("props")
+          console.log("fdgjfdskjndfskj")
           if (Number(max_price) < 400) {
             console.log("filteredProps max_price")
             console.log("max_price III", max_price)

@@ -1,3 +1,5 @@
+@import "tailwindcss";
+
 /* Box Model Hack */
 * {
   box-sizing: border-box;
@@ -6,6 +8,11 @@
 /******************************************
 /* BASE STYLES
 /*******************************************/
+body {
+  background: #F9F3F5;
+
+}
+
 a, button {
   margin: 0 auto;
   display: block;
@@ -13,6 +20,7 @@ a, button {
 }
 
 .container {
+  background: white;
   max-width: 95%;
   margin: 10px auto;
   padding: 20px 10px;
@@ -34,13 +42,18 @@ a, button {
   border: 1px solid red;
 } */
 
-.reviews {
+.reviewList {
+  background: #F9F3F5;
+}
+
+.reviewItem {
   justify-content: start;
   gap: 10px;
   border-radius: 10px;
   border: 1px solid rgb(220, 220, 220);
   max-width: 400px;
-  padding: 15px
+  padding: 15px;
+  background: white;
 }
 
 .reviews p {
@@ -88,4 +101,32 @@ a, button {
   border: none;
   border-bottom: 1px solid grey;
   cursor:none;
+}
+
+.toolbar {
+  /* border: 1px solid red; */
+  background: #FFF7FA;
+  padding: 20px;
+  justify-content: center;
+  border: 1px solid rgb(236, 191, 191);
+}
+
+.toolbar div {
+  display: flex;
+  justify-content: center;
+  /* max-width: 300px; */
+  margin: 10px auto;
+}
+
+.toolbar button {
+  /* border: 1px solid lime; */
+  padding: 10px 50px;
+  margin: 10px auto;
+  background: #BD003F;
+  color: white;
+  font-weight: bold;
+}
+
+.accent {
+  accent-color: #BD003F;
 }

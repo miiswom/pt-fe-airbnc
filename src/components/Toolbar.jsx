@@ -2,7 +2,7 @@ import "../../styles/App.css"
 import { useEffect, useState } from "react"
 import { fetchAllPrices } from "../utils/fetch";
 
-export default function Toolbar({ setSearchParams}) {
+export default function Toolbar({ setSearchParams }) {
   const [selectVal, setSelectVal] = useState("");
   const [priceRangeVal, setPriceRangeVal] = useState();
   const [minPriceRangeVal, setMinPriceRangeVal] = useState();
@@ -19,7 +19,7 @@ export default function Toolbar({ setSearchParams}) {
 
   function handleFormSubmit(e) {
     e.preventDefault()
-    setSearchParams({property_type: e.target[0].value, max_price: e.target[1].value})
+    setSearchParams({ property_type: e.target[0].value, max_price: e.target[1].value })
   }
 
   useEffect(() => {
@@ -32,40 +32,45 @@ export default function Toolbar({ setSearchParams}) {
 
 
   return (
-    <div className="container column" >
+    <div className="container" >
 
-      <form className="custom-toolbar row " style={{ margin:" 0 auto"}}
-      onSubmit={(e) => handleFormSubmit(e)}>
-        <p>Filter by property type &nbsp;</p>
-        <select onChange={handleSelectValue} value={selectVal}>
-          <option value="" defaultValue=""></option>
-          <option value="Apartment">Apartment</option>
-          <option value="House">House</option>
-          <option value="Studio">Studio</option>
-          <option value="Loft">Loft</option>
-          <option value="Villa">Villa</option>
-          <option value="Cottage">Cottage</option>
-          <option value="Chalet">Chalet</option>
-          <option value="Cabin">Cabin</option>
-          <option value="Mansion">Mansion</option>
-          <option value="Castle">Castle</option>
-        </select>
-
-        <p>&nbsp; &nbsp;Price range:&nbsp;</p>
-        {/* <p>{minPriceRangeVal}</p> */}
+      <form className="toolbar column" style={{ margin: " 0 auto" }}
+        onSubmit={(e) => handleFormSubmit(e)}>
         <div className="row">
+          <p>Filter by property type &nbsp;</p>
+          <select onChange={handleSelectValue} value={selectVal}>
+            <option value="" defaultValue=""></option>
+            <option value="Apartment">Apartment</option>
+            <option value="House">House</option>
+            <option value="Studio">Studio</option>
+            <option value="Loft">Loft</option>
+            <option value="Villa">Villa</option>
+            <option value="Cottage">Cottage</option>
+            <option value="Chalet">Chalet</option>
+            <option value="Cabin">Cabin</option>
+            <option value="Mansion">Mansion</option>
+            <option value="Castle">Castle</option>
+          </select>
+        </div>
+
+        <div className="row">
+          <p>&nbsp; &nbsp;Price range:&nbsp;</p>
+          {/* <p>{minPriceRangeVal}</p> */}
           <p style={{ margin: "0 auto" }}>{priceRangeVal}</p>
           <input type="range"
-          defaultValue={maxPriceRangeVal}
+          className="accent"
+            defaultValue={maxPriceRangeVal}
             min={minPriceRangeVal}
             max={maxPriceRangeVal}
             onChange={(e) => handlePriceRangeInput(e)}
-            // onChange={alert(priceRangeVal)}
-            // onMouseOut={filterPropertiesByPriceRange}
-            // onMouseUp={(e) => handleFinal(e)}
+          // onChange={alert(priceRangeVal)}
+          // onMouseOut={filterPropertiesByPriceRange}
+          // onMouseUp={(e) => handleFinal(e)}
           />
+          <p>{maxPriceRangeVal}</p>
+
         </div>
-        <p>{maxPriceRangeVal}</p>
+
         <button type="submit">Filter</button>
       </form>
     </div>

@@ -5,6 +5,7 @@ import Header from './components/Header'
 import Properties from './components/Properties'
 import { useState } from 'react'
 import SingleProperty from './components/SingleProperty'
+import SinglePropertyII from './components/SinglePropertyII'
 
 function App() {
   const [sortValue, setSortValue] = useState("property_id");
@@ -43,10 +44,14 @@ function App() {
 
           />} />
 
-      <Route 
+      {/* <Route 
       path="/properties/:property_id"
-      element={<SingleProperty/>}/>
+      element={<SingleProperty/>}/> */}
+       <Route 
+      path="/properties/:property_id"
+      element={<SinglePropertyII/>}/>
     </Routes>
+    
   )
 }
 

@@ -3,7 +3,7 @@ import '../../styles/App.css'
 import { Link } from 'react-router'
 
 export default function PropertiesList({ properties }) {
-
+  console.log("properties", properties)
   return (
     <ul className="grid-container">
       {properties.map((property) => {
