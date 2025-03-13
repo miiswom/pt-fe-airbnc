@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef} from "react"
+import { useEffect, useState, useRef } from "react"
 import { useParams } from "react-router"
 import Header from "./Header"
 import { fetchPropertyById } from "../utils/fetch"
@@ -8,8 +8,11 @@ export default function PostReviewPage() {
   const { property_id } = useParams()
   const [property, setProperty] = useState()
   const [isLoading, setIsLoading] = useState(true)
+  const [starCount, setStarCount] = useState(0)
+  const [textareaVal, setTextAreaVal] = useState("")
   // const start = Array.fill()
-  const stars = useRef(null)
+  const stars = useRef(null);
+
   // console.log("property_id", property_id)
   // console.log("stars", stars)
 
@@ -17,64 +20,103 @@ export default function PostReviewPage() {
     fetchPropertyById(property_id)
       .then(property => {
         setIsLoading(false)
-        setProperty(property)})
-  }, [property_id, stars])
+        setProperty(property)
+      })
+  }, [property_id, stars, starCount])
   // console.log(property)
 
-
   function countStars(e) {
-    let starCount = e.target.parentNode.id;
-    console.log("starCount", starCount)
-    // for(let i=0; i < stars.length; i++) {
-    //   if(starCount) {
-    //     stars[i].classList.toggle('checked')
-    //     starCount = i
-    //   } 
-    
-    //   if(stars[i] < starCount) {
-    //     stars[i].className = 'checked'
-    //   }
-    // }
-    if(stars !== null) {
+    setStarCount(e.target.parentNode.id);
+    // console.log("starCount", starCount)
+    if (stars !== null) {
       console.log("star", stars.current.children.length)
-      // for(let i=0; i < starCount; i++) {
-        for(let star of stars.current.children) {
-          if(star.id <= starCount) {
-            console.log(star)
-            star.className ="checked"
-
-          } else {
-            star.className = "unchecked"
-          }
-        // }
+      for (let star of stars.current.children) {
+        if (star.id <= e.target.parentNode.id) {
+          console.log(star)
+          star.classList.remove("unchecked")
+          star.classList.add("checked")
+        } else {
+          star.classList.add("unchecked")
+        }
       }
     }
-    
   }
 
-  if(isLoading) return <p>Loading page...</p>
+  function postReview(e) {
+    // guest_id is 1 by default
+    // rating is the starCount
+    // rating is the input.value
+    // fetch()
+    e.preventDefault()
+    const comment = e.target[0].value;
+    fetch(`https://pt-be-airbnc.onrender.com/api/properties/${property_id}/reviews`, 
+     {
+      method: "POST",
+      headers: {"Content-type": "application/json"},
+      body: JSON.stringify(
+        {
+          guest_id: 1,
+          rating: starCount,
+          comment: comment
+        }
+      )
+
+    })
+    .then(res => res.json())
+    .then(data => data)
+  }
+
+  function handeTextareaVal(e) {
+    setTextAreaVal((curr) => {
+      curr = e.target.value
+    return curr
+  })
+  }
+  console.log(textareaVal)
+
+  // console.log("starCount", starCount)
+
+  if (isLoading) return <p>Loading page...</p>
   return (
     <>
-    <Header />
-    <div className="container">
-      <div className="container row">
-        <img style={{ width: "20%" }} src={property.images} alt="" />
-        <p style={{ width: "70%" }}>{property.description}</p>
-      </div>
+      <Header />
       <div className="container">
-        <h1 style={{ textAlign: "center", fontSize: "1.5em", fontWeight: "bold" }}>Post a review for {property.property_name}</h1>
+        <div className="container row">
+          <img style={{ width: "20%" }} src={property.images} alt="" />
+          <p style={{ width: "70%" }}>{property.description}</p>
+        </div>
+        <div className="container">
+          <h1 style={{ textAlign: "center", fontSize: "1.5em", fontWeight: "bold" }}>Write a review for <span style={{fontStyle: "italic"}}>{property.property_name}</span></h1>
+        </div>
+      
+        <form
+          onSubmit={(e) => postReview(e)} className="container column" action="">
+          <ul 
+          className="container row stars" ref={stars}>
+            <li  id={1} 
+            style={{width: "30px"}}
+            onClick={(e) => countStars(e)}><img  src={Star} alt="star" /></li>
+            <li id={2} 
+            style={{width: "30px"}}
+            onClick={(e) => countStars(e)}><img src={Star} alt="star" /></li>
+            <li id={3} 
+            style={{width: "30px"}}
+            onClick={(e) => countStars(e)}><img src={Star} alt="star" /></li>
+            <li id={4} 
+            style={{width: "30px"}}
+            onClick={(e) => countStars(e)}><img src={Star} alt="star" /></li>
+            <li id={5} 
+            style={{width: "30px"}}
+            onClick={(e) => countStars(e)}><img src={Star} alt="star" /></li>
+          </ul>
+          <textarea style={{ width: "95%", height: "300px", margin: "0 auto", padding: "10px", border: "1px solid grey", display: "block" }} type="text" placeholder="Write your review here..." 
+          value={textareaVal}
+          onChange={e => handeTextareaVal(e)}/>
+          <button 
+          className="btn"
+          >Post Review</button>
+        </form>
       </div>
-
-      <form action="">
-        <ul className="container row stars" ref={stars}>
-          <li id={1} onClick={(e) => countStars(e)}><img src={Star} alt="star" /></li>
-          <li id={2} onClick={(e) => countStars(e)}><img src={Star} alt="star" /></li>
-          <li id={3} onClick={(e) => countStars(e)}><img src={Star} alt="star" /></li>
-          <li id={4} onClick={(e) => countStars(e)}><img src={Star} alt="star" /></li>
-          <li id={5} onClick={(e) => countStars(e)}><img src={Star} alt="star" /></li>
-        </ul>
-      </form>
-    </div>
     </>
 
   )

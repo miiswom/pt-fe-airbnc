@@ -36,6 +36,7 @@ a, button {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  
 }
 
 /* .reviews > * {
@@ -44,17 +45,10 @@ a, button {
 
 .reviewList {
   background: #F9F3F5;
+  padding: 10px;
 }
 
-.reviewItem {
-  justify-content: start;
-  gap: 10px;
-  border-radius: 10px;
-  border: 1px solid rgb(220, 220, 220);
-  max-width: 400px;
-  padding: 15px;
-  background: white;
-}
+
 
 .reviews p {
   align-self: center;
@@ -62,9 +56,21 @@ a, button {
 
 .grid-container {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
   align-items: center;
   justify-items: center;
+}
+
+.reviewItem {
+  justify-content: start;
+  gap: 10px;
+  /* max-height: max-content; */
+  border-radius: 10px;
+  border: 1px solid rgb(220, 220, 220);
+  width: 350px;
+  padding: 15px;
+  margin: 0 auto;
+  background: white;
 }
 
 .property-card {
@@ -118,13 +124,14 @@ a, button {
   margin: 10px auto;
 }
 
-.toolbar button {
-  /* border: 1px solid lime; */
+.btn {
+  border: 1px solid grey;
   padding: 10px 50px;
   margin: 10px auto;
   background: #BD003F;
   color: white;
   font-weight: bold;
+
 }
 
 .accent {
@@ -141,5 +148,5 @@ a, button {
 }
 
 .unchecked {
-  filter: invert(8%) sepia(9%) saturate(312%) hue-rotate(21deg) brightness(101%) contrast(99%);
+  filter: invert(57%) sepia(1%) saturate(3484%) hue-rotate(25deg) brightness(81%) contrast(88%);
 }

@@ -71,7 +71,7 @@ export default function Toolbar({ setSearchParams }) {
 
         </div>
 
-        <button type="submit">Filter</button>
+        <button className="btn" type="submit">Filter</button>
       </form>
     </div>
 
