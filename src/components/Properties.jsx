@@ -12,7 +12,7 @@ export default function Properties({ setSortValue, sortValue, searchParams, setS
     fetch(`https://pt-be-airbnc.onrender.com/api/properties?sort=${sortValue}`)
       .then((res) => res.json())
       .then((data) => {
-        console.log("data", data)
+        // console.log("data", data)
         const ids = []
         const props = []
         // removing the duplicate properties by property_id 
@@ -26,14 +26,14 @@ export default function Properties({ setSortValue, sortValue, searchParams, setS
           return a[sortValue] < b[sortValue] ? 1 : 1
         }
         )
-        console.log("props", props)
+        // console.log("props", props)
 
         // using the property_type params to filter
         if (property_type === "" || property_type === undefined || property_type === null) {
-          console.log("fdgjfdskjndfskj")
+          // console.log("fdgjfdskjndfskj")
           if (Number(max_price) < 400) {
-            console.log("filteredProps max_price")
-            console.log("max_price III", max_price)
+            // console.log("filteredProps max_price")
+            // console.log("max_price III", max_price)
 
             const filteredPropssss = props.filter((prop) => Number(prop.price_per_night) < Number(max_price))
             setProperties(filteredPropssss)
@@ -41,13 +41,13 @@ export default function Properties({ setSortValue, sortValue, searchParams, setS
             setProperties(props)
           }
         } else if (property_type.length > 0) {
-          console.log("filteredProps")
-          console.log("property_type III", property_type)
+          // console.log("filteredProps")
+          // console.log("property_type III", property_type)
 
           const filteredProps = props.filter((prop) => prop.property_type === property_type)
           if (Number(max_price) < 400) {
-            console.log("filteredProps max_price")
-            console.log("max_price III", max_price)
+            // console.log("filteredProps max_price")
+            // console.log("max_price III", max_price)
 
             const filteredPropssss = filteredProps.filter((prop) => Number(prop.price_per_night) < Number(max_price))
             setProperties(filteredPropssss)

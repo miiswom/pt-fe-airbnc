@@ -8,18 +8,23 @@ import FavouriteBtn from './FavouriteBtn';
 import BookingSection from './BookingSection';
 import { DatePicker } from '@mui/x-date-pickers';
 import { fetchFavourites, fetchPropertyById } from '../utils/fetch';
-
+import "../../styles/caroussel.css"
+import Caroussel from './Caroussel';
 
 export default function SingleProperty() {
   const { property_id } = useParams()
   const [singleProperty, setSingleProperty] = useState("");
   const [isFavourited, setIsFavourited] = useState(false);
+  const [isLoading, setIsLoading] = useState(true)
 
   // fetching the single property data
   useEffect(() => {
     fetchPropertyById(property_id)
-      .then(property => setSingleProperty(property))
-  }, [])
+      .then(property => {
+        setIsLoading(false)
+        setSingleProperty(property)
+      })
+  }, [isLoading])
 
   // fetching all favourites and check if 'favourited' className should be applied
   useEffect(() => {
@@ -30,7 +35,7 @@ export default function SingleProperty() {
         }
       })
   }, []);
-
+  if (isLoading) return <h1>Loading images...</h1>
   return (
     <>
       <Header />
@@ -40,15 +45,15 @@ export default function SingleProperty() {
           property_id={property_id}
           isFavourited={isFavourited}
           setIsFavourited={setIsFavourited} />
-        <img style={{ maxWidth: "60%", marginBottom: "20px" }} src={singleProperty.images} alt="" />
-        <p style={{ fontSize: "1.3em", marginBottom: "20px" }}>{singleProperty.description}</p>
-        
+        <Caroussel images={singleProperty.images} />
+        <p style={{ marginTop: "50px", fontSize: "1.3em", marginBottom: "20px" }}>{singleProperty.description}</p>
+
         <Expandable>
           <BookingSection>
-            <DatePicker/>
+            <DatePicker />
           </BookingSection>
         </Expandable>
-        
+
         <Expandable>
           <ReviewsList property_id={property_id} value={["Reviews"]} />
         </Expandable>

@@ -5,7 +5,7 @@ import Header from './components/Header'
 import Properties from './components/Properties'
 import { useState } from 'react'
 import SingleProperty from './components/SingleProperty'
-import SinglePropertyII from './components/SinglePropertyII'
+import PostReviewPage from './components/PostReviewPage'
 
 function App() {
   const [sortValue, setSortValue] = useState("property_id");
@@ -17,8 +17,8 @@ function App() {
 
   const property_type = searchParams.get("property_type")
   const max_price = searchParams.get("max_price");
-  console.log("property_type", {property_type}) 
-  console.log("max_price", {max_price})  
+  // console.log("property_type", {property_type}) 
+  // console.log("max_price", {max_price})  
  
   
   {<Header
@@ -43,13 +43,14 @@ function App() {
           max_price={max_price}
 
           />} />
-
-      {/* <Route 
-      path="/properties/:property_id"
-      element={<SingleProperty/>}/> */}
        <Route 
       path="/properties/:property_id"
-      element={<SinglePropertyII/>}/>
+      element={<SingleProperty/>}/>
+
+      <Route 
+      path="/properties/:property_id/post-review"
+      element={<PostReviewPage/>}/>
+
     </Routes>
     
   )

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { fetchReviewsByPropertyId } from "../utils/fetch";
+import PostReviewBtn from "./PostReviewBtn";
 
 export default function ReviewsList({ property_id }) {
   const [reviewsList, setReviewsList] = useState([])
@@ -20,7 +21,7 @@ export default function ReviewsList({ property_id }) {
           <p>{review.comment}</p>
         </li>
       })}
-
+          <PostReviewBtn property_id={property_id}/>
     </ul>
   )
 }
