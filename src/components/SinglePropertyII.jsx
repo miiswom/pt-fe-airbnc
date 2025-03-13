@@ -45,8 +45,8 @@ export default function SingleProperty() {
           property_id={property_id}
           isFavourited={isFavourited}
           setIsFavourited={setIsFavourited} />
-          <Caroussel images={singleProperty.images}/>
-        <p style={{ fontSize: "1.3em", marginBottom: "20px" }}>{singleProperty.description}</p>
+        <Caroussel images={singleProperty.images} />
+        <p style={{ marginTop: "50px", fontSize: "1.3em", marginBottom: "20px" }}>{singleProperty.description}</p>
 
         <Expandable>
           <BookingSection>

@@ -38,6 +38,6 @@ export default function FavouriteBtn({ property_id, isFavourited, setIsFavourite
     }
   }
   return (
-    <a><img onClick={(e) => toggleFavourite(e)} className={isFavourited ? "favourited" : null} style={{ width: "40px" }} src={HeartImage} alt="" /></a>
+    <a><img onClick={(e) => toggleFavourite(e)} className={isFavourited ? "favourited" : null} style={{ width: "40px", margin: "10px auto"}} src={HeartImage} alt="" /></a>
   )
 }
