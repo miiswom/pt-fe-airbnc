@@ -11,6 +11,8 @@ export default function Calendar({property_id}) {
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null) 
   const [dateInput, setDateInput] = useState(null)
+  const [isSubmitted, setOnSubmitted] = useState(true)
+
   console.log(dateInput)
   console.log(startDate)
 
@@ -18,6 +20,14 @@ export default function Calendar({property_id}) {
     e.preventDefault()
     const book_in_date = e.target[0].value.split("/").reverse().join("/");
     const book_out_date = e.target[1].value.split("/").reverse().join("/");
+
+    setOnSubmitted(false)
+
+    if(startDate === null || endDate === null) {
+      setOnSubmitted(true)
+      return
+    }
+
     console.log(book_in_date, book_out_date)
     fetch(`https://pt-be-airbnc.onrender.com/api/properties/${property_id}/booking`, 
     {
@@ -32,8 +42,14 @@ export default function Calendar({property_id}) {
     })
     .then(res => res.json())
     .then(data => {
-      if(data.msg === 'Sorry, overlapping dates.') {
+      if(data.msg === "Sorry, overlapping dates.") {
         alert(data.msg)
+        setOnSubmitted(true)
+        setStartDate(null)
+        setEndDate(null)
+      } else {
+        alert(data.msg)
+        // redirect to a successful booking page ^^
       }
       console.log(data)
     })
@@ -68,7 +84,12 @@ export default function Calendar({property_id}) {
       <div className='container'>
         <p style={{padding: "10px"}}><span style={{fontWeight: "bold"}}>Start date:&nbsp;</span>{startDate && startDate.format(new Date(startDate).toLocaleDateString("gb-GB"))}</p>
         <p style={{padding: "10px"}}><span style={{fontWeight: "bold"}}>End date:&nbsp; </span>{endDate && endDate.format(new Date(endDate).toLocaleDateString("gb-GB"))}</p>
-        <button className='btn'>Book</button>
+        <button 
+        type="submit"
+        className={isSubmitted ? "btn" : "btn-disabled"}
+        disabled={!isSubmitted ? true : false} 
+
+>Book</button>
       </div>
     </form>
   )
