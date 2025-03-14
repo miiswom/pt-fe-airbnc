@@ -35,12 +35,14 @@ export default function Caroussel({ images }) {
               key={i}
               className={`carousel__slide ${i === 0 ? "current-slide" : ""}`}
             >
+                <div style={{maxWidth: "100%", height: "100%"}}>
                 <img
                   className="carousel__image"
                   style={{ maxWidth: "100%", marginBottom: "20px" }}
                   src={img}
                   alt=""
                 />
+                  </div>
             </li>
           ))}
         </ul>
