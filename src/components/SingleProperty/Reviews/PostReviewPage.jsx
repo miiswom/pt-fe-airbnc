@@ -10,6 +10,7 @@ export default function PostReviewPage() {
   const [isLoading, setIsLoading] = useState(true)
   const [starCount, setStarCount] = useState(0)
   const [textareaVal, setTextAreaVal] = useState("")
+  const [isSubmitted, setOnSubmitted] = useState(false)
   // const start = Array.fill()
   const stars = useRef(null);
 
@@ -48,6 +49,14 @@ export default function PostReviewPage() {
     // rating is the input.value
     // fetch()
     e.preventDefault()
+    console.log(starCount)
+    setOnSubmitted(true)
+
+    if(starCount === 0) {
+      alert("Please, rate the property.")
+      setOnSubmitted(false)
+      return 
+    } 
     const comment = e.target[0].value;
     fetch(`https://pt-be-airbnc.onrender.com/api/properties/${property_id}/reviews`, 
      {
@@ -63,7 +72,10 @@ export default function PostReviewPage() {
 
     })
     .then(res => res.json())
-    .then(data => data)
+    .then(data => console.log(data))
+    .then(() => {
+      history.back()
+    })
   }
 
   function handeTextareaVal(e) {
@@ -75,6 +87,7 @@ export default function PostReviewPage() {
   console.log(textareaVal)
 
   // console.log("starCount", starCount)
+
 
   if (isLoading) return <p>Loading page...</p>
   return (
@@ -91,7 +104,7 @@ export default function PostReviewPage() {
       
         <form
           onSubmit={(e) => postReview(e)} className="container column" action="">
-          <ul 
+          <ul
           className="container row stars" ref={stars}>
             <li  id={1} 
             style={{width: "30px"}}
@@ -109,11 +122,13 @@ export default function PostReviewPage() {
             style={{width: "30px"}}
             onClick={(e) => countStars(e)}><img src={Star} alt="star" /></li>
           </ul>
-          <textarea style={{ width: "95%", height: "300px", margin: "0 auto", padding: "10px", border: "1px solid grey", display: "block" }} type="text" placeholder="Write your review here..." 
+          <textarea required style={{ width: "95%", height: "300px", margin: "0 auto", padding: "10px", border: "1px solid grey", display: "block" }} type="text" placeholder="Write your review here..." 
           value={textareaVal}
           onChange={e => handeTextareaVal(e)}/>
           <button 
-          className="btn"
+          className={!isSubmitted || starCount === 0 ? "btn" : "btn-disabled"}
+          type="submit"
+          disabled={isSubmitted || starCount === 0 ? true : false} 
           >Post Review</button>
         </form>
       </div>

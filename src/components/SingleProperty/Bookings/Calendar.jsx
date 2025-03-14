@@ -31,7 +31,12 @@ export default function Calendar({property_id}) {
       })
     })
     .then(res => res.json())
-    .then(data => console.log(data))
+    .then(data => {
+      if(data.msg === 'Sorry, overlapping dates.') {
+        alert(data.msg)
+      }
+      console.log(data)
+    })
   }
   return (
     <form onSubmit={(e) => handleBooking(e)}>

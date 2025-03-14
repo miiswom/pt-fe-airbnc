@@ -13,7 +13,7 @@ export default function ReviewsList({ property_id }) {
 
   return (
     < div className=" reviewList">
-     <ul  className="grid-container" style={{ width: "80%" }}>
+     <ul >
       {reviewsList.map((review) => {
         return (
           <li className="column reviewItem" key={review.review_id}>
@@ -24,8 +24,8 @@ export default function ReviewsList({ property_id }) {
         </li>
         )
       })}
+          <PostReviewBtn property_id={property_id}/>
     </ul>
-    <PostReviewBtn property_id={property_id}/>
     </div >
    
 

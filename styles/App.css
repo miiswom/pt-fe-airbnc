@@ -46,6 +46,8 @@ a, button {
 .reviewList {
   background: #F9F3F5;
   padding: 10px;
+  margin: 0 auto;
+  max-width: 100%;
 }
 
 
@@ -59,18 +61,20 @@ a, button {
   grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
   align-items: center;
   justify-items: center;
+  margin: 0 auto;
 }
 
 .reviewItem {
-  justify-content: start;
+  /* justify-content: center; */
   gap: 10px;
+  width: 100%;
   /* max-height: max-content; */
   border-radius: 10px;
-  border: 1px solid rgb(220, 220, 220);
-  width: 350px;
+  border: 1px solid rgb(220, 220, 220); 
   padding: 15px;
-  margin: 0 auto;
+  margin: 10px auto;
   background: white;
+  flex-wrap: wrap; 
 }
 
 .property-card {
@@ -132,7 +136,17 @@ a, button {
   color: white;
   font-weight: bold;
   border-radius: 8px;
+}
 
+.btn:disabled,
+.btn-disabled {
+  background: #dccfde;
+  color: black;
+  border: 1px solid grey;
+  padding: 10px 50px;
+  margin: 10px auto;
+  font-weight: bold;
+  border-radius: 8px;
 }
 
 .accent {
