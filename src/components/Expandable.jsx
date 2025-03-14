@@ -1,6 +1,6 @@
 import {useState} from 'react'
 
-export default function Expandable({children}) {
+export default function Expandable({children, text}) {
   // console.log(children)
   const [showContent, setShowContent] = useState(false);
 
@@ -11,7 +11,7 @@ export default function Expandable({children}) {
   }
   return (
     <>
-    <button className='expandable' onClick={handleClick}>{showContent ? "Close ":"Open " }</button>
+    <button className='expandable' onClick={handleClick}>{showContent ? `Close ${text}`: `Open ${text}` }</button>
     {showContent ? children : null}
     </>
     

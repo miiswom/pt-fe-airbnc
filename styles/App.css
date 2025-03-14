@@ -131,6 +131,7 @@ a, button {
   background: #BD003F;
   color: white;
   font-weight: bold;
+  border-radius: 8px;
 
 }
 
@@ -149,4 +150,10 @@ a, button {
 
 .unchecked {
   filter: invert(57%) sepia(1%) saturate(3484%) hue-rotate(25deg) brightness(81%) contrast(88%);
+}
+
+@media screen and (max-width: 800px) { 
+  .expandables {
+    flex-direction: column;
+  }
 }

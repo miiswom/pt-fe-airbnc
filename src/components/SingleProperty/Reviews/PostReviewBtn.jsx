@@ -5,7 +5,7 @@ export default function PostReviewBtn({property_id}) {
     <Link 
     to={`/properties/${property_id}/post-review`}
     className='btn'
-    style={{width: "30%"}}
+    style={{width: "300px"}}
     >Write a Review</Link>
   )
   }

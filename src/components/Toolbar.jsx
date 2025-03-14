@@ -54,7 +54,7 @@ export default function Toolbar({ setSearchParams }) {
         </div>
 
         <div className="row">
-          <p>&nbsp; &nbsp;Price range:&nbsp;</p>
+          <p>&nbsp;Price range:&nbsp;</p>
           {/* <p>{minPriceRangeVal}</p> */}
           <p style={{ margin: "0 auto" }}>{priceRangeVal}</p>
           <input type="range"

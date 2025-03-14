@@ -46,13 +46,18 @@ export default function SingleProperty() {
           setIsFavourited={setIsFavourited} />
         <Caroussel images={singleProperty.images} />
         <p style={{ marginTop: "50px", fontSize: "1.3em", marginBottom: "20px" }}>{singleProperty.description}</p>
-
-        {/* <Expandable> */}
-          <Calendar/>
-        {/* </Expandable> */}
-        <Expandable>
-          <ReviewsList property_id={property_id} value={["Reviews"]} />
-        </Expandable>
+        <div className="container row expandables" style={{justifyContent: "space-around", }}>
+          <div>
+          <Expandable text="Booking Section" className="column" style={{width: "50%"}}>
+            <Calendar property_id={property_id}/>
+          </Expandable>
+          </div>
+          <div>
+          <Expandable text="Reviews">
+            <ReviewsList property_id={property_id} />
+          </Expandable>
+          </div>
+        </div>
       </div>
     </>)
 }
