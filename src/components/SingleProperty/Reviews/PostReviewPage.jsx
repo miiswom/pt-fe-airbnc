@@ -1,8 +1,8 @@
 import { useEffect, useState, useRef } from "react"
 import { useParams } from "react-router"
-import Header from "./Header"
-import { fetchPropertyById } from "../utils/fetch"
-import Star from "../../styles/assets/star-svgrepo-com.svg"
+import Header from "../../Header"
+import { fetchPropertyById } from "../../../utils/fetch"
+import Star from "../../../../styles/assets/star-svgrepo-com.svg"
 
 export default function PostReviewPage() {
   const { property_id } = useParams()

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { fetchReviewsByPropertyId } from "../utils/fetch";
+import { fetchReviewsByPropertyId } from "../../../utils/fetch";
 import PostReviewBtn from "./PostReviewBtn";
 
 export default function ReviewsList({ property_id }) {

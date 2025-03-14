@@ -1,4 +1,4 @@
-import HeartImage from "../../styles/assets/heart-svgrepo-com.svg";
+import HeartImage from "../../../../styles/assets/heart-svgrepo-com.svg";
 
 export default function FavouriteBtn({ property_id, isFavourited, setIsFavourited }) {
 

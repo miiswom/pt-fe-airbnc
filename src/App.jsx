@@ -2,10 +2,10 @@ import '../styles/App.css'
 import '../styles/reset.css'
 import { Routes, Route, useSearchParams} from 'react-router'
 import Header from './components/Header'
-import Properties from './components/Properties'
+import Properties from './components/Properties/Properties'
 import { useState } from 'react'
-import SingleProperty from './components/SingleProperty'
-import PostReviewPage from './components/PostReviewPage'
+import SingleProperty from './components/SingleProperty/SingleProperty'
+import PostReviewPage from './components/SingleProperty/Reviews/PostReviewPage'
 
 function App() {
   const [sortValue, setSortValue] = useState("property_id");

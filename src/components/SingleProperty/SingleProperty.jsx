@@ -1,14 +1,13 @@
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router'
-import Header from './Header'
-import "../../styles/App.css"
-import Expandable from './Expandable';
-import ReviewsList from "./ReviewsList"
-import FavouriteBtn from './FavouriteBtn';
-import BookingSection from './BookingSection';
-import { DatePicker } from '@mui/x-date-pickers';
-import { fetchFavourites, fetchPropertyById } from '../utils/fetch';
-import "../../styles/caroussel.css"
+import Header from '../Header'
+import "../../../styles/App.css"
+import Expandable from '../Expandable';
+import ReviewsList from "./Reviews/ReviewsList"
+import FavouriteBtn from './Favourite/FavouriteBtn';
+import Calendar from './Bookings/Calendar';
+import { fetchFavourites, fetchPropertyById } from '../../utils/fetch';
+import "../../../styles/caroussel.css"
 import Caroussel from './Caroussel';
 
 export default function SingleProperty() {
@@ -48,12 +47,9 @@ export default function SingleProperty() {
         <Caroussel images={singleProperty.images} />
         <p style={{ marginTop: "50px", fontSize: "1.3em", marginBottom: "20px" }}>{singleProperty.description}</p>
 
-        <Expandable>
-          <BookingSection>
-            <DatePicker />
-          </BookingSection>
-        </Expandable>
-
+        {/* <Expandable> */}
+          <Calendar/>
+        {/* </Expandable> */}
         <Expandable>
           <ReviewsList property_id={property_id} value={["Reviews"]} />
         </Expandable>

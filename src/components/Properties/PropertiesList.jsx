@@ -1,5 +1,5 @@
 
-import '../../styles/App.css'
+import '../../../styles/App.css'
 import { Link } from 'react-router'
 
 export default function PropertiesList({ properties }) {
