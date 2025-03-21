@@ -35,7 +35,7 @@ export default function Properties({ setSortValue, sortValue, searchParams, setS
             // console.log("filteredProps max_price")
             // console.log("max_price III", max_price)
 
-            const filteredPropssss = props.filter((prop) => Number(prop.price_per_night) < Number(max_price))
+            const filteredPropssss = props.filter((prop) => Number(prop.price_per_night) <= Number(max_price))
             setProperties(filteredPropssss)
           } else {
             setProperties(props)

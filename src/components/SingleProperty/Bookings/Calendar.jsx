@@ -69,17 +69,17 @@ export default function Calendar({property_id}) {
       displayFormat={dateFormat}
       focusedInput={dateInput}
       onFocusChange={(e)=> setDateInput(e)}
-      renderCalendarInfo={() => (
-        <DatePresets 
-        startDate={startDate}
-        endDate={endDate}
-        dateFormat={dateFormat}
-        handlePresets={(start, end) => {
-          setStartDate(start)
-          setEndDate(end)
-        }}
-        />
-      )}
+      // renderCalendarInfo={() => (
+      //   <DatePresets 
+      //   startDate={startDate}
+      //   endDate={endDate}
+      //   dateFormat={dateFormat}
+      //   handlePresets={(start, end) => {
+      //     setStartDate(start)
+      //     setEndDate(end)
+      //   }}
+      //   />
+      // )}
       />
       <div className='container'>
         <p style={{padding: "10px"}}><span style={{fontWeight: "bold"}}>Start date:&nbsp;</span>{startDate && startDate.format(new Date(startDate).toLocaleDateString("gb-GB"))}</p>

@@ -23,6 +23,9 @@ export default function SingleProperty() {
         setIsLoading(false)
         setSingleProperty(property)
       })
+      .catch((err) => {
+        console.log("heeeere")
+      })
   }, [isLoading])
 
   // fetching all favourites and check if 'favourited' className should be applied
@@ -32,6 +35,9 @@ export default function SingleProperty() {
         for (let item of favourites) {
           item.property_id === Number(property_id) && item.guest_id === 1 ? setIsFavourited(true) : setIsFavourited(false)
         }
+      })
+      .catch((err) => {
+        console.log("heeeere")
       })
   }, []);
   if (isLoading) return <h1>Loading images...</h1>
@@ -48,13 +54,13 @@ export default function SingleProperty() {
         <p style={{ marginTop: "50px", fontSize: "1.3em", marginBottom: "20px" }}>{singleProperty.description}</p>
         <div className="container row expandables" style={{justifyContent: "space-around", }}>
           <div>
-          <Expandable text="Booking Section" className="column" style={{width: "50%"}}>
-            <Calendar property_id={property_id}/>
+          <Expandable text="Reviews">
+            <ReviewsList property_id={property_id} />
           </Expandable>
           </div>
           <div>
-          <Expandable text="Reviews">
-            <ReviewsList property_id={property_id} />
+          <Expandable text="Booking Section" className="column" style={{width: "50%"}}>
+            <Calendar property_id={property_id}/>
           </Expandable>
           </div>
         </div>

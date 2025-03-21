@@ -1,3 +1,6 @@
+import Cookies from 'js-cookie'
+import updateOptions from './updateOptions'
+
 export async function fetchAllPrices() {
   const prices = await fetch(`https://pt-be-airbnc.onrender.com/api/properties`)
     .then(res => res.json())
@@ -14,7 +17,8 @@ export async function fetchAllPrices() {
 };
 
 export async function fetchPropertyById(id) {
-  const property = await fetch(`https://pt-be-airbnc.onrender.com/api/properties/${id}`)
+  // const token = localStorage.getItem("jsonwebtoken")
+  const property = await fetch(`https://pt-be-airbnc.onrender.com/api/properties/${id}`, updateOptions())
   .then(res => res.json())
   .then(data => data.property);
 

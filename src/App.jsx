@@ -6,6 +6,7 @@ import Properties from './components/Properties/Properties'
 import { useState } from 'react'
 import SingleProperty from './components/SingleProperty/SingleProperty'
 import PostReviewPage from './components/SingleProperty/Reviews/PostReviewPage'
+import SignInForm from './components/SigninPage'
 
 function App() {
   const [sortValue, setSortValue] = useState("property_id");
@@ -51,6 +52,10 @@ function App() {
       path="/properties/:property_id/post-review"
       element={<PostReviewPage/>}/>
 
+      <Route
+      path="/signin"
+      element={<SignInForm/>}
+      />
     </Routes>
     
   )
