@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react"
 import "../../../styles/App.css";
-import Header from "../Header";
+import Header from "../Main/Header";
 import PropertiesList from "./PropertiesList";
-import Toolbar from "../Toolbar";
+import Toolbar from "../Main/Toolbar";
 
 export default function Properties({ setSortValue, sortValue, searchParams, setSearchParams, property_type, max_price, maxPriceRangeVal, setMaxPriceRangeVal }) {
   const [properties, setProperties] = useState([])

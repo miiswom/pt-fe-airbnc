@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from "react"
 import { useParams } from "react-router"
-import Header from "../../Header"
+import Header from "../../Main/Header"
 import { fetchPropertyById } from "../../../utils/fetch"
 import Star from "../../../../styles/assets/star-svgrepo-com.svg"
 
@@ -10,7 +10,7 @@ export default function PostReviewPage() {
   const [isLoading, setIsLoading] = useState(true)
   const [starCount, setStarCount] = useState(0)
   const [textareaVal, setTextAreaVal] = useState("")
-  const [isSubmitted, setOnSubmitted] = useState(false)
+  const [isSubmitted, setIsSubmitted] = useState(false)
   // const start = Array.fill()
   const stars = useRef(null);
 
@@ -50,11 +50,11 @@ export default function PostReviewPage() {
     // fetch()
     e.preventDefault()
     console.log(starCount)
-    setOnSubmitted(true)
+    setIsSubmitted(true)
 
     if(starCount === 0) {
       alert("Please, rate the property.")
-      setOnSubmitted(false)
+      setIsSubmitted(false)
       return 
     } 
     const comment = e.target[0].value;

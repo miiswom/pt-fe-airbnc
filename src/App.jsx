@@ -1,14 +1,14 @@
 import '../styles/App.css'
 import '../styles/reset.css'
 import { Routes, Route, useSearchParams } from 'react-router'
-import Header from './components/Header'
+import Header from './components/Main/Header'
 import Properties from './components/Properties/Properties'
 import { useState } from 'react'
-import SingleProperty from './components/SingleProperty/SingleProperty'
-import PostReviewPage from './components/SingleProperty/Reviews/PostReviewPage'
-import SignInForm from './components/SigninPage'
+import SingleProperty from './components/Property/SingleProperty'
+import PostReviewPage from './components/Property/Reviews/PostReviewPage'
+import SignInForm from './components/Auth/SigninForm'
 import UserProvider from './providers/AuthProvider'
-
+import Signout from './components/Auth/Signout'
 function App() {
   const [sortValue, setSortValue] = useState("property_id");
   const [searchParams, setSearchParams] = useSearchParams(
@@ -22,14 +22,14 @@ function App() {
   // console.log("property_type", {property_type}) 
   // console.log("max_price", {max_price})  
 
-    <Header
-      setSortValue={setSortValue}
-      sortValue={sortValue}
-      searchParams={searchParams}
-      setSearchParams={setSearchParams}
-    // property_type={property_type}
-    // max_price={max_price}
-    />
+  <Header
+    setSortValue={setSortValue}
+    sortValue={sortValue}
+    searchParams={searchParams}
+    setSearchParams={setSearchParams}
+  // property_type={property_type}
+  // max_price={max_price}
+  />
 
   return (
     <Routes>
@@ -56,7 +56,19 @@ function App() {
         path="/signin"
         element={<SignInForm />}
       />
+
+      <Route
+        path="/signout"
+        element={<Signout/>}
+      />
+
+      <Route 
+        path='/signup'
+        element={<></>}
+        />
     </Routes>
+
+
 
   )
 }

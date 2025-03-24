@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router'
-import Header from '../Header'
+import Header from '../Main/Header'
 import "../../../styles/App.css"
 import Expandable from '../Expandable';
 import ReviewsList from "./Reviews/ReviewsList"

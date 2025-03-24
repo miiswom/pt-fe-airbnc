@@ -1,13 +1,14 @@
 import { useState, useEffect } from 'react'
 import Cookies from 'js-cookie'
 import axios from 'axios';
-import Header from './Header';
-import setAuthenticationHeader from '../utils/authenticate';
-import { useAuth } from '../contexts/AuthContext';
+import Header from '../Main/Header';
+import setAuthenticationHeader from '../../utils/authenticate';
+import { useAuth } from '../../contexts/AuthContext';
 
 export default function SignInForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isSubmitted, setIsSubmitted] = useState(false)
   const auth = useAuth();
 
   function handlePasswordVal(e) {
@@ -25,6 +26,7 @@ export default function SignInForm() {
 
   function handleSignin(e) {
     e.preventDefault()
+    setIsSubmitted(true)
 
     // axios.post(`https://pt-be-airbnc.onrender.com/api/signin`,
     //     {
@@ -64,8 +66,13 @@ export default function SignInForm() {
           console.log("data", data)
           localStorage.setItem('jsonwebtoken', data.token)
           // Cookies.set("access_token", data.token, {expires: 7, secure: true})
-          auth.signin(data.user_id);
+          return auth.signin(data.user_id);
         }
+      })
+      .then(() => {
+        setTimeout(()=>{
+          history.back()
+        }, 1000)
       })
   }
 
@@ -100,6 +107,7 @@ export default function SignInForm() {
               padding: "10px"
             }}
             type="text"
+            required
             placeholder="Enter your email"
             onChange={(e) => handleEmailVal(e)}
             value={email}
@@ -119,10 +127,11 @@ export default function SignInForm() {
               padding: "10px"
             }}
             type="text"
+            required
             placeholder="Enter your password"
             onChange={(e) => handlePasswordVal(e)}
             value={password} />
-          <button type="submit" className='btn'>Signin</button>
+          <button type="submit" className={isSubmitted ? 'btn-disabled' : 'btn'}>Signin</button>
         </form>
       </div>
     </>

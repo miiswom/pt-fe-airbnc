@@ -1,6 +1,6 @@
-import "../../styles/App.css"
+import "../../../styles/App.css"
 import { useEffect, useState } from "react"
-import { fetchAllPrices } from "../utils/fetch";
+import { fetchAllPrices } from "../../utils/fetch";
 
 export default function Toolbar({ setSearchParams }) {
   const [selectVal, setSelectVal] = useState("");

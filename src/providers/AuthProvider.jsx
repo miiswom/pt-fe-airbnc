@@ -7,12 +7,14 @@ export default function AuthProvider({ children }) {
   const data = "hello";
   const [status, setStatus] = useState(false);
 
+  console.log(status)
   const [currentUser, setCurrentUser] = useState()
   // use state to store the user
   // send setUser to signin to retrieve user info if successful login
   // store the user info as data 
 
   const signin = useCallback((id) => {
+    console.log("useCallback")
     fetch(`https://pt-be-airbnc.onrender.com/api/users/${id}`, updateOptions())
       .then(res => res.json())
       .then(data => {
@@ -26,9 +28,9 @@ export default function AuthProvider({ children }) {
     currentUser,
     signin,
     status
-  }), [currentUser, status])
+  }), [status])
 
-  return <AuthContext.Provider value={authValue}>
+  return (<AuthContext.Provider value={authValue}>
     {children}
-  </AuthContext.Provider>
+  </AuthContext.Provider>)
 }
