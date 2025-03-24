@@ -1,8 +1,11 @@
 import { Link } from 'react-router';
 import "../../styles/App.css"
 import Button from './Button';
+import { useAuth } from '../contexts/AuthContext';
 
 export default function Header() {
+  const val = useAuth();
+  console.log(val.status)
   return (
     <>
       <nav className='container row'>

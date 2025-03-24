@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext} from "react";
 import { fetchReviewsByPropertyId } from "../../../utils/fetch";
 import PostReviewBtn from "./PostReviewBtn";
 
@@ -10,6 +10,7 @@ export default function ReviewsList({ property_id }) {
     fetchReviewsByPropertyId(property_id)
       .then(reviews => setReviewsList(reviews))
   }, [])
+
 
   return (
     < div className=" reviewList">

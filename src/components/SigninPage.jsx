@@ -3,10 +3,12 @@ import Cookies from 'js-cookie'
 import axios from 'axios';
 import Header from './Header';
 import setAuthenticationHeader from '../utils/authenticate';
+import { useAuth } from '../contexts/AuthContext';
+
 export default function SignInForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [signInStatus, setSignInStatus] = useState(false)
+  const auth = useAuth();
 
   function handlePasswordVal(e) {
     setPassword((curr) => {
@@ -55,17 +57,19 @@ export default function SignInForm() {
     )
       .then(res => res.json())
       .then(data => {
+        console.log("here")
         if (!data.success) {
-          setSignInStatus(false)
+          console.log(data)
         } else {
-          setSignInStatus(true)
           console.log("data", data)
           localStorage.setItem('jsonwebtoken', data.token)
           // Cookies.set("access_token", data.token, {expires: 7, secure: true})
+          auth.signin(data.user_id);
         }
       })
   }
 
+  // console.log(mystery)
   // const isUserAuthenticated = () => {
   //   fetch(`https://pt-be-airbnc.onrender.com/api/isUserAuth`, {
   //     headers: { "x-access-token": Cookies.get("token")}
@@ -120,11 +124,7 @@ export default function SignInForm() {
             value={password} />
           <button type="submit" className='btn'>Signin</button>
         </form>
-
       </div>
-      {signInStatus && (
-        <button onClick={() => redirectUser()}>Enter</button>
-      )}
     </>
 
   )
