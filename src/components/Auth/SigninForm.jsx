@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import Cookies from 'js-cookie'
 import axios from 'axios';
-import Header from '../Main/Header';
+import Header from "../Main/Header"
 import setAuthenticationHeader from '../../utils/authenticate';
 import { useAuth } from '../../contexts/AuthContext';
 
@@ -71,7 +71,8 @@ export default function SignInForm() {
       })
       .then(() => {
         setTimeout(()=>{
-          history.back()
+          // history.back()
+          location.assign("/")
         }, 1000)
       })
   }
@@ -126,7 +127,7 @@ export default function SignInForm() {
               border: "1px solid grey",
               padding: "10px"
             }}
-            type="text"
+            type="password"
             required
             placeholder="Enter your password"
             onChange={(e) => handlePasswordVal(e)}

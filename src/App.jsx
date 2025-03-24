@@ -9,6 +9,8 @@ import PostReviewPage from './components/Property/Reviews/PostReviewPage'
 import SignInForm from './components/Auth/SigninForm'
 import UserProvider from './providers/AuthProvider'
 import Signout from './components/Auth/Signout'
+import SignupForm from './components/Auth/SignupForm'
+
 function App() {
   const [sortValue, setSortValue] = useState("property_id");
   const [searchParams, setSearchParams] = useSearchParams(
@@ -22,14 +24,14 @@ function App() {
   // console.log("property_type", {property_type}) 
   // console.log("max_price", {max_price})  
 
-  <Header
-    setSortValue={setSortValue}
-    sortValue={sortValue}
-    searchParams={searchParams}
-    setSearchParams={setSearchParams}
-  // property_type={property_type}
-  // max_price={max_price}
-  />
+  // <Header
+  //   setSortValue={setSortValue}
+  //   sortValue={sortValue}
+  //   searchParams={searchParams}
+  //   setSearchParams={setSearchParams}
+  // // property_type={property_type}
+  // // max_price={max_price}
+  // />
 
   return (
     <Routes>
@@ -64,7 +66,7 @@ function App() {
 
       <Route 
         path='/signup'
-        element={<></>}
+        element={<SignupForm/>}
         />
     </Routes>
 

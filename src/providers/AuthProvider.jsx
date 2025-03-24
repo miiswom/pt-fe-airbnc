@@ -5,7 +5,7 @@ import updateOptions from "../utils/updateOptions";
 export default function AuthProvider({ children }) {
 
   const data = "hello";
-  const [status, setStatus] = useState(false);
+  // const [status, setStatus] = useState(false);
 
   console.log(status)
   const [currentUser, setCurrentUser] = useState()
@@ -19,7 +19,7 @@ export default function AuthProvider({ children }) {
       .then(res => res.json())
       .then(data => {
           setCurrentUser(data);
-          setStatus(true)
+          // setStatus(true)
       })
       .catch(err => console.log(err))
   }, []);
@@ -27,8 +27,8 @@ export default function AuthProvider({ children }) {
   const authValue = useMemo(() => ({
     currentUser,
     signin,
-    status
-  }), [status])
+    // status
+  }), [currentUser])
 
   return (<AuthContext.Provider value={authValue}>
     {children}

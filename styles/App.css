@@ -166,8 +166,24 @@ a, button {
   filter: invert(57%) sepia(1%) saturate(3484%) hue-rotate(25deg) brightness(81%) contrast(88%);
 }
 
+.signup-form {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr 2fr;
+  gap: 10px;
+  margin: 0 auto;
+}
+
+.signup-form label {
+  text-align: end;
+  line-height: 2.5em;
+}
+
 @media screen and (max-width: 800px) { 
   .expandables {
     flex-direction: column;
+  }
+
+  .signup-form {
+    grid-template-columns: 1fr 1fr;
   }
 }

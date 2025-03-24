@@ -2,7 +2,7 @@ import Cookies from 'js-cookie'
 import updateOptions from './updateOptions'
 
 export async function fetchAllPrices() {
-  const prices = await fetch(`https://pt-be-airbnc.onrender.com/api/properties`)
+  const prices = await fetch(`https://pt-be-airbnc.onrender.com/api/properties`, )
     .then(res => res.json())
     .then(data => {
       const properties_prices_per_nigth = []
@@ -34,7 +34,7 @@ export async function fetchFavourites() {
 };
 
 export async function fetchReviewsByPropertyId(id) {
-  const reviews = await fetch(`https://pt-be-airbnc.onrender.com/api/properties/${id}/reviews`)
+  const reviews = await fetch(`https://pt-be-airbnc.onrender.com/api/properties/${id}/reviews`, )
   .then(res => res.json())
   .then(data => data.reviews);
 
