@@ -1,36 +1,28 @@
 import { AuthContext } from "../contexts/AuthContext";
-import { useCallback, useState, useMemo } from "react";
+import { useCallback, useState, useMemo, useEffect } from "react";
 import updateOptions from "../utils/updateOptions";
 
 export default function AuthProvider({ children }) {
+  let user = localStorage.getItem(('currentUser'))
+  const [currentUser, setCurrentUser] = useState(user)
 
-  const data = "hello";
-  // const [status, setStatus] = useState(false);
-
-  console.log(status)
-  const [currentUser, setCurrentUser] = useState()
-  // use state to store the user
-  // send setUser to signin to retrieve user info if successful login
-  // store the user info as data 
-
-  const signin = useCallback((id) => {
-    console.log("useCallback")
-    fetch(`https://pt-be-airbnc.onrender.com/api/users/${id}`, updateOptions())
-      .then(res => res.json())
-      .then(data => {
-          setCurrentUser(data);
-          // setStatus(true)
-      })
-      .catch(err => console.log(err))
-  }, []);
-
-  const authValue = useMemo(() => ({
+  const signin = useCallback((id)=>{
+    fetch(`https://pt-be-airbnc.onrender.com/api/users/${id}/`, updateOptions())
+    .then(res => res.json())
+    .then(data => {
+      if(!user) {
+        localStorage.setItem('currentUser', JSON.stringify(data.user));
+        user = localStorage.getItem('currentUser');
+      } 
+      setCurrentUser(user)
+    })
+  },[])
+  
+  const authVal = useMemo(()=>({
     currentUser,
-    signin,
-    // status
-  }), [currentUser])
-
-  return (<AuthContext.Provider value={authValue}>
+    signin
+  }), [user])
+  return (<AuthContext.Provider value={authVal}>
     {children}
   </AuthContext.Provider>)
 }

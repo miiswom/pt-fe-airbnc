@@ -4,8 +4,8 @@ import Button from '../Button';
 import { useAuth } from '../../contexts/AuthContext';
 
 export default function Header() {
-  // const val = useAuth();
-  // console.log("val.status", val)
+  const val = useAuth();
+  console.log("val", val)
 
   return (
     <>

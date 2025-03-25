@@ -4,6 +4,7 @@ import axios from 'axios';
 import Header from "../Main/Header"
 import setAuthenticationHeader from '../../utils/authenticate';
 import { useAuth } from '../../contexts/AuthContext';
+import updateOptions from '../../utils/updateOptions';
 
 export default function SignInForm() {
   const [email, setEmail] = useState("");
@@ -28,23 +29,6 @@ export default function SignInForm() {
     e.preventDefault()
     setIsSubmitted(true)
 
-    // axios.post(`https://pt-be-airbnc.onrender.com/api/signin`,
-    //     {
-    //       email: email,
-    //       password: password
-    //     })
-    //   .then(response => {
-    //     if(response.data) {
-    //       console.log("res", res)
-    //       const token = res.data.token;
-    //       localStorage.setItem('jsonwebtoken', token)
-
-    //       //set default headers
-    //       setAuthenticationHeader(token)
-    //     }
-    //   })
-    //   .catch((err) => console.log(err))
-
     fetch(`https://pt-be-airbnc.onrender.com/api/signin`,
       {
         method: "POST",
@@ -64,27 +48,23 @@ export default function SignInForm() {
           console.log(data)
         } else {
           console.log("data", data)
-          localStorage.setItem('jsonwebtoken', data.token)
-          // Cookies.set("access_token", data.token, {expires: 7, secure: true})
-          return auth.signin(data.user_id);
+          localStorage.setItem('jsonwebtoken', data.token);
+          // fetch(`https://pt-be-airbnc.onrender.com/api/users/${data.user_id}`, updateOptions())
+          // .then(res => res.json())
+          // .then(data => {
+          //   console.log("data II", data)
+          //     // setCurrentUser(data);
+          //     // setCurrentUser(localStorage.currentUser)
+          //     // setStatus(true)
+          // })
+          // .catch(err => console.log(err))          // Cookies.set("access_token", data.token, {expires: 7, secure: true})
+          auth.signin(data.user_id);
         }
       })
       .then(() => {
-        setTimeout(()=>{
-          // history.back()
-          location.assign("/")
-        }, 1000)
+          history.back()
       })
   }
-
-  // console.log(mystery)
-  // const isUserAuthenticated = () => {
-  //   fetch(`https://pt-be-airbnc.onrender.com/api/isUserAuth`, {
-  //     headers: { "x-access-token": Cookies.get("token")}
-  //   })
-  //   .then(res => res.json())
-  //   .then(data => console.log(data))
-  // }
 
 
   return (
