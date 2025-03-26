@@ -2,7 +2,7 @@ import { useState, useEffect, useMemo } from "react";
 import { useParams } from "react-router"
 import updateOptions from "../../utils/updateOptions"
 import Header from "../Main/Header";
-import {fetchUserById} from "../../utils/fetch"
+import { fetchUserById } from "../../utils/fetch"
 
 export default function UserProfile() {
   const { id } = useParams()
@@ -12,11 +12,10 @@ export default function UserProfile() {
   const [userBookings, setUserBookings] = useState();
   const [userProperties, setUserProperties] = useState();
 
-  // console.log(userReview)
-  // console.log(userInfo)
-
-  // console.log(userBookings)
-  // console.log(userProperties)
+  console.log(userReview)
+  console.log(userInfo)
+  console.log(userBookings)
+  console.log(userProperties)
 
 
   useEffect(() => {
@@ -44,6 +43,10 @@ export default function UserProfile() {
       })
   }, [])
 
+  useEffect(() => {
+
+  })
+
   if (isLoading) return (
     <>
       <title>User Profile</title>
@@ -60,9 +63,26 @@ export default function UserProfile() {
       <Header />
       <section className="container">
         <h1 style={{ fontWeight: "bold", fontSize: "1.5em", textAlign: "center" }}>{userInfo.first_name}'s Profile</h1>
-        <img src={userInfo.avatar} alt="" />
+        {/*block 1: 
+          - host avatar, first_name, surname, role
+          - total num of reviews received for all properties
+          - average rating (counting all properties)
+          - total num of properties listed
+          - member since (created_at)*/}
+        <div className="container row user-card">
+          <div style={{ width: "200px" }}>
+            <img style={{ maxWidth: "100%" }} src={userInfo.avatar} alt="" />
+          </div>
+          <div className="column user-card-info">
+            <h2 style={{fontSize: "1.3em"}}>{userInfo.first_name} {userInfo.surname}</h2>
+            <p>Reviews received: __</p>
+            <p>Average rating: __ </p>
+            <p>Properties listed: {userProperties.length}</p>
+          </div>
+
+        </div>
+
         <p>email: <span>{userInfo.email}</span></p>
-        <p>first name: <span>{userInfo.first_name}</span></p>
         <p>lastname: <span>{userInfo.surname}</span></p>
         <p>phone number: <span>{userInfo.phone_number}</span></p>
         <p>role: <span>{userInfo.role}</span></p>

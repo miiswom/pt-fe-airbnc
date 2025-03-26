@@ -178,6 +178,19 @@ a, button {
   line-height: 2.5em;
 }
 
+.user-card {
+  width: 70%;
+  gap: 10px;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.user-card-info {
+  font-weight: bold;
+  text-align: center;
+  gap: 0.3em;
+}
+
 @media screen and (max-width: 800px) { 
   .expandables {
     flex-direction: column;

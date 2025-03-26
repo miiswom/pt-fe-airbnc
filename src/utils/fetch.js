@@ -42,9 +42,7 @@ export async function fetchReviewsByPropertyId(id) {
 };
 
 export async function fetchUserById(id) {
-  const user = await fetch(`https://pt-be-airbnc.onrender.com/api/users/${id}`, updateOptions())
-  .then(res => res.json())
-  .then(data => data.user);
+  const user = await fetch(`https://pt-be-airbnc.onrender.com/api/users/${id}`, updateOptions());
 
   return user;
 };

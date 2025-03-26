@@ -42,18 +42,24 @@ export default function SignInForm() {
       .then(async data => {
         if (!data.success) {
           alert("The credentials you've entered are incorrect.")
-          console.log(data)
+          setIsSubmitted(false)
+
+          // window.reload()
+          return false
         } else {
           // console.log("data", data)
-          await localStorage.setItem('jsonwebtoken', data.token);
+          localStorage.setItem('jsonwebtoken', data.token);
           console.log(data.user_id)
-          await auth.signin(data.user_id);
-          // return data;
+          await auth.signin(data.user_id)
         }
       })
-      .then(() => {
-        history.go(-1)
+      .then((data) => {
+        console.log(data === undefined)
+        if(data === undefined) {
+          history.back(-1)
+        }
       })
+
   }
 
 

@@ -17,6 +17,7 @@ export default function AuthProvider({ children }) {
         user = localStorage.getItem('currentUser');
       // } 
       setCurrentUser(user)
+      return { success: true}
     })
   },[])
   
