@@ -32,48 +32,52 @@ export default function Toolbar({ setSearchParams }) {
 
 
   return (
-    <div className="container" >
+    <>
+      <title>Homepage</title>
+      <div className="container" >
 
-      <form className="toolbar column" style={{ margin: " 0 auto" }}
-        onSubmit={(e) => handleFormSubmit(e)}>
-        <div className="row">
-          <p>Filter by property type &nbsp;</p>
-          <select onChange={handleSelectValue} value={selectVal}>
-            <option value="" defaultValue=""></option>
-            <option value="Apartment">Apartment</option>
-            <option value="House">House</option>
-            <option value="Studio">Studio</option>
-            <option value="Loft">Loft</option>
-            <option value="Villa">Villa</option>
-            <option value="Cottage">Cottage</option>
-            <option value="Chalet">Chalet</option>
-            <option value="Cabin">Cabin</option>
-            <option value="Mansion">Mansion</option>
-            <option value="Castle">Castle</option>
-          </select>
-        </div>
+        <form className="toolbar column" style={{ margin: " 0 auto" }}
+          onSubmit={(e) => handleFormSubmit(e)}>
+          <div className="row">
+            <p>Filter by property type &nbsp;</p>
+            <select onChange={handleSelectValue} value={selectVal}>
+              <option value="" defaultValue=""></option>
+              <option value="Apartment">Apartment</option>
+              <option value="House">House</option>
+              <option value="Studio">Studio</option>
+              <option value="Loft">Loft</option>
+              <option value="Villa">Villa</option>
+              <option value="Cottage">Cottage</option>
+              <option value="Chalet">Chalet</option>
+              <option value="Cabin">Cabin</option>
+              <option value="Mansion">Mansion</option>
+              <option value="Castle">Castle</option>
+            </select>
+          </div>
 
-        <div className="row">
-          <p>&nbsp;Price range:&nbsp;</p>
-          {/* <p>{minPriceRangeVal}</p> */}
-          <p style={{ margin: "0 auto" }}>{priceRangeVal}</p>
-          <input type="range"
-          className="accent"
-            defaultValue={maxPriceRangeVal}
-            min={minPriceRangeVal}
-            max={maxPriceRangeVal}
-            onChange={(e) => handlePriceRangeInput(e)}
-          // onChange={alert(priceRangeVal)}
-          // onMouseOut={filterPropertiesByPriceRange}
-          // onMouseUp={(e) => handleFinal(e)}
-          />
-          <p>{maxPriceRangeVal}</p>
+          <div className="row">
+            <p>&nbsp;Price range:&nbsp;</p>
+            {/* <p>{minPriceRangeVal}</p> */}
+            <p style={{ margin: "0 auto" }}>{priceRangeVal}</p>
+            <input type="range"
+              className="accent"
+              defaultValue={maxPriceRangeVal}
+              min={minPriceRangeVal}
+              max={maxPriceRangeVal}
+              onChange={(e) => handlePriceRangeInput(e)}
+            // onChange={alert(priceRangeVal)}
+            // onMouseOut={filterPropertiesByPriceRange}
+            // onMouseUp={(e) => handleFinal(e)}
+            />
+            <p>{maxPriceRangeVal}</p>
 
-        </div>
+          </div>
 
-        <button className="btn" type="submit">Filter</button>
-      </form>
-    </div>
+          <button className="btn" type="submit">Filter</button>
+        </form>
+      </div>
+    </>
+
 
   )
 }

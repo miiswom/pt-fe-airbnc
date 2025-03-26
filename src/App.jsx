@@ -10,6 +10,8 @@ import SignInForm from './components/Auth/SigninForm'
 import UserProvider from './providers/AuthProvider'
 import Signout from './components/Auth/Signout'
 import SignupForm from './components/Auth/SignupForm'
+import UserProfile from './components/Users/UserProfile'
+import ProtectedRoute from "./components/Auth/ProtectedRoute"
 
 function App() {
   const [sortValue, setSortValue] = useState("property_id");
@@ -68,6 +70,16 @@ function App() {
         path='/signup'
         element={<SignupForm/>}
         />
+        
+      <Route 
+        path='/users/:id'
+        element={<UserProfile/>}
+        />
+
+      <Route
+        path='/protected'
+        element={<SignInForm/>}
+       />
     </Routes>
 
 

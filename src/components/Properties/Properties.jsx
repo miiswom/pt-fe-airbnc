@@ -7,15 +7,14 @@ import Toolbar from "../Main/Toolbar";
 export default function Properties({ setSortValue, sortValue, searchParams, setSearchParams, property_type, max_price, maxPriceRangeVal, setMaxPriceRangeVal }) {
   const [properties, setProperties] = useState([])
   // console.log("property_type II", property_type)
-  
+  const [isLoading, setIsLoading] = useState(true)
+
   useEffect(() => {
     fetch(`https://pt-be-airbnc.onrender.com/api/properties?sort=${sortValue}`)
       .then((res) => res.json())
       .then((data) => {
-        // console.log("data", data)
         const ids = []
         const props = []
-        // removing the duplicate properties by property_id 
         data.properties.map((property) => {
           if (!ids.includes(property.property_id)) {
             ids.push(property.property_id)
@@ -26,29 +25,17 @@ export default function Properties({ setSortValue, sortValue, searchParams, setS
           return a[sortValue] < b[sortValue] ? 1 : 1
         }
         )
-        // console.log("props", props)
 
-        // using the property_type params to filter
         if (property_type === "" || property_type === undefined || property_type === null) {
-          // console.log("fdgjfdskjndfskj")
           if (Number(max_price) < 400) {
-            // console.log("filteredProps max_price")
-            // console.log("max_price III", max_price)
-
             const filteredPropssss = props.filter((prop) => Number(prop.price_per_night) <= Number(max_price))
             setProperties(filteredPropssss)
           } else {
             setProperties(props)
           }
         } else if (property_type.length > 0) {
-          // console.log("filteredProps")
-          // console.log("property_type III", property_type)
-
           const filteredProps = props.filter((prop) => prop.property_type === property_type)
           if (Number(max_price) < 400) {
-            // console.log("filteredProps max_price")
-            // console.log("max_price III", max_price)
-
             const filteredPropssss = filteredProps.filter((prop) => Number(prop.price_per_night) < Number(max_price))
             setProperties(filteredPropssss)
           } else {
@@ -59,9 +46,19 @@ export default function Properties({ setSortValue, sortValue, searchParams, setS
         }
 
         // using the max_price params to filter
-
+        setIsLoading(false)
       })
   }, [property_type, max_price])
+
+  if (isLoading) return (
+    <>
+    <title>AirBNC</title>
+      <Header />
+      <div className="container">
+        <h1>Loading properties...</h1>
+      </div>
+
+    </>)
 
   return (
     <>

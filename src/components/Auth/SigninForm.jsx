@@ -1,10 +1,6 @@
-import { useState, useEffect } from 'react'
-import Cookies from 'js-cookie'
-import axios from 'axios';
+import { useState } from 'react'
 import Header from "../Main/Header"
-import setAuthenticationHeader from '../../utils/authenticate';
 import { useAuth } from '../../contexts/AuthContext';
-import updateOptions from '../../utils/updateOptions';
 
 export default function SignInForm() {
   const [email, setEmail] = useState("");
@@ -18,13 +14,14 @@ export default function SignInForm() {
       return curr
     })
   }
+  
   function handleEmailVal(e) {
     setEmail((curr) => {
       curr = e.target.value;
       return curr
     })
   }
-
+  
   function handleSignin(e) {
     e.preventDefault()
     setIsSubmitted(true)
@@ -42,33 +39,27 @@ export default function SignInForm() {
       }
     )
       .then(res => res.json())
-      .then(data => {
-        console.log("here")
+      .then(async data => {
         if (!data.success) {
+          alert("The credentials you've entered are incorrect.")
           console.log(data)
         } else {
-          console.log("data", data)
-          localStorage.setItem('jsonwebtoken', data.token);
-          // fetch(`https://pt-be-airbnc.onrender.com/api/users/${data.user_id}`, updateOptions())
-          // .then(res => res.json())
-          // .then(data => {
-          //   console.log("data II", data)
-          //     // setCurrentUser(data);
-          //     // setCurrentUser(localStorage.currentUser)
-          //     // setStatus(true)
-          // })
-          // .catch(err => console.log(err))          // Cookies.set("access_token", data.token, {expires: 7, secure: true})
-          auth.signin(data.user_id);
+          // console.log("data", data)
+          await localStorage.setItem('jsonwebtoken', data.token);
+          console.log(data.user_id)
+          await auth.signin(data.user_id);
+          // return data;
         }
       })
       .then(() => {
-          history.back()
+        history.go(-1)
       })
   }
 
 
   return (
     <>
+      <title>Sign-in</title>
       <Header />
 
       <div className="container column">

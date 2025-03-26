@@ -5,9 +5,13 @@ export default function updateOptions(options) {
         ...update.headers,
         Authorization: `Bearer ${localStorage.jsonwebtoken}`,
       };
+    } else if(location.href === "/protected") {
+      history.back(-1)
     } else {
       alert('You need to sign-up or login.');
-      window.location.assign("/signin")
+      location.assign("/signin")
+      // return
+      // location.assign("/signin")
     }
     return update;
 

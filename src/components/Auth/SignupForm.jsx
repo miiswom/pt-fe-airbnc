@@ -6,8 +6,10 @@ export default function SignupForm() {
   //const newUser = [first_name, surname, email, phone_number, role, avatar, password];
 
   function handleSignup() { }
+  
   return (
     <>
+        <title>Sign-up</title>
       <Header />
 
       <section className="container" >

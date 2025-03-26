@@ -9,6 +9,7 @@ import Calendar from './Bookings/Calendar';
 import { fetchFavourites, fetchPropertyById } from '../../utils/fetch';
 import "../../../styles/caroussel.css"
 import Caroussel from './Caroussel';
+import Toolbar from '../Main/Toolbar';
 
 export default function SingleProperty() {
   const { property_id } = useParams()
@@ -40,8 +41,14 @@ export default function SingleProperty() {
         console.log("heeeere")
       })
   }, []);
-  if (isLoading) return <h1>Loading images...</h1>
-  return (
+  if (isLoading) return (
+    <>
+      <Header />
+      <div className="container">
+        <h1>Loading property info...</h1>
+      </div>
+    </>)  
+    return (
     <>
       <Header />
       <div className='container property'>

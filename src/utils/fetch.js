@@ -18,7 +18,7 @@ export async function fetchAllPrices() {
 
 export async function fetchPropertyById(id) {
   // const token = localStorage.getItem("jsonwebtoken")
-  const property = await fetch(`https://pt-be-airbnc.onrender.com/api/properties/${id}`, updateOptions())
+  const property = await fetch(`https://pt-be-airbnc.onrender.com/api/properties/${id}`)
   .then(res => res.json())
   .then(data => data.property);
 
@@ -41,6 +41,20 @@ export async function fetchReviewsByPropertyId(id) {
   return reviews
 };
 
+export async function fetchUserById(id) {
+  const user = await fetch(`https://pt-be-airbnc.onrender.com/api/users/${id}`, updateOptions())
+  .then(res => res.json())
+  .then(data => data.user);
+
+  return user;
+};
+
+export async function fetchProtectedRoute() {
+  await fetch("https://pt-be-airbnc.onrender.com/api/protected", updateOptions())
+  .then(res => res.json())
+
+  // return data
+}
 // export async function fetchUniqueProperties(sortValue) {
 //   const sortedProperties = await fetch(`https://pt-be-airbnc.onrender.com/api/properties?sort=${sortValue}`)
 //   .then((res) => res.json())

@@ -5,6 +5,7 @@ import 'react-dates/lib/css/_datepicker.css'
 
 import { DateRangePicker } from 'react-dates';
 import DatePresets from './DatePresets';
+import updateOptions from '../../../utils/updateOptions';
 
 export default function Calendar({property_id}) {
   const dateFormat = "DD/MM/YYYY"
@@ -29,8 +30,7 @@ export default function Calendar({property_id}) {
     }
 
     console.log(book_in_date, book_out_date)
-    fetch(`https://pt-be-airbnc.onrender.com/api/properties/${property_id}/booking`, 
-    {
+    fetch(`https://pt-be-airbnc.onrender.com/api/properties/${property_id}/booking`, updateOptions(    {
       method: "POST",
       headers: {"Content-type": "application/json"},
       body: JSON.stringify(
@@ -39,7 +39,7 @@ export default function Calendar({property_id}) {
         check_in_date: book_in_date,
         check_out_date: book_out_date
       })
-    })
+    }))
     .then(res => res.json())
     .then(data => {
       if(data.msg === "Sorry, overlapping dates.") {
@@ -47,9 +47,12 @@ export default function Calendar({property_id}) {
         setOnSubmitted(true)
         setStartDate(null)
         setEndDate(null)
-      } else {
+      } else if(data.msg.startsWith('Booking')) {
         alert(data.msg)
         // redirect to a successful booking page ^^
+      } else {
+        console.log(data.msg)
+        return
       }
       console.log(data)
     })

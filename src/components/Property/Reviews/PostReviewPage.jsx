@@ -3,6 +3,7 @@ import { useParams } from "react-router"
 import Header from "../../Main/Header"
 import { fetchPropertyById } from "../../../utils/fetch"
 import Star from "../../../../styles/assets/star-svgrepo-com.svg"
+import updateOptions from "../../../utils/updateOptions"
 
 export default function PostReviewPage() {
   const { property_id } = useParams()
@@ -18,7 +19,7 @@ export default function PostReviewPage() {
   // console.log("stars", stars)
 
   useEffect(() => {
-    fetchPropertyById(property_id)
+    fetch(`https://pt-be-airbnc.onrender.com/api/properties/${property_id}`, updateOptions())
       .then(property => {
         setIsLoading(false)
         setProperty(property)
@@ -58,8 +59,7 @@ export default function PostReviewPage() {
       return 
     } 
     const comment = e.target[0].value;
-    fetch(`https://pt-be-airbnc.onrender.com/api/properties/${property_id}/reviews`, 
-     {
+    fetch(`https://pt-be-airbnc.onrender.com/api/properties/${property_id}/reviews`, updateOptions(     {
       method: "POST",
       headers: {"Content-type": "application/json"},
       body: JSON.stringify(
@@ -69,8 +69,8 @@ export default function PostReviewPage() {
           comment: comment
         }
       )
-
     })
+)
     .then(res => res.json())
     .then(data => console.log(data))
     .then(() => {
