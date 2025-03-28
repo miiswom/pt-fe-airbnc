@@ -16,7 +16,7 @@ export default function Properties({ setSortValue, sortValue, searchParams, setS
         const ids = []
         const props = []
         data.properties.map((property) => {
-          if (!ids.includes(property.property_id)) {
+         if (!ids.includes(property.property_id)) {
             ids.push(property.property_id)
             props.push(property)
           }

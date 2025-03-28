@@ -19,6 +19,11 @@ a, button {
   margin-bottom: 15px;
 }
 
+li {
+  display: inline-block;
+}
+
+
 .container {
   background: white;
   max-width: 95%;
@@ -111,6 +116,7 @@ a, button {
   border: none;
   border-bottom: 1px solid grey;
   cursor:none;
+  flex-direction: column;
 }
 
 .toolbar {
@@ -168,7 +174,7 @@ a, button {
 
 .signup-form {
   display: grid;
-  grid-template-columns: 1fr 2fr 1fr 2fr;
+  grid-template-columns: 1fr 1fr;
   gap: 10px;
   margin: 0 auto;
 }
@@ -179,10 +185,11 @@ a, button {
 }
 
 .user-card {
-  width: 70%;
+  width: 90%;
   gap: 10px;
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  margin-bottom: 20px;
 }
 
 .user-card-info {
@@ -191,12 +198,17 @@ a, button {
   gap: 0.3em;
 }
 
-@media screen and (max-width: 800px) { 
+@media screen and (min-width: 800px) { 
   .expandables {
-    flex-direction: column;
+    flex-direction: row;
   }
 
   .signup-form {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 2fr 1fr 2fr;
+  }
+
+  .user-card {
+    width: 40%;
   }
 }
+
