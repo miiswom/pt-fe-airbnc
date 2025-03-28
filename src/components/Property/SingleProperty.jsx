@@ -8,8 +8,9 @@ import FavouriteBtn from './Favourite/FavouriteBtn';
 import Calendar from './Bookings/Calendar';
 import { fetchFavourites, fetchPropertyById } from '../../utils/fetch';
 import "../../../styles/caroussel.css"
-import Caroussel from './Caroussel';
+import CarousselII from './CarousselII';
 import Toolbar from '../Main/Toolbar';
+import PropertiesCarrousel from '../PropertiesCarrousel';
 
 export default function SingleProperty() {
   const { property_id } = useParams()
@@ -57,7 +58,7 @@ export default function SingleProperty() {
           property_id={property_id}
           isFavourited={isFavourited}
           setIsFavourited={setIsFavourited} />
-        <Caroussel images={singleProperty.images} />
+        <CarousselII properties={singleProperty.images} />
         <p style={{ marginTop: "50px", fontSize: "1.3em", marginBottom: "20px" }}>{singleProperty.description}</p>
         <div className="container row expandables" style={{justifyContent: "space-around", }}>
           <div>

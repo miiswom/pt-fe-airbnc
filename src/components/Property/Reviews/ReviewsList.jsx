@@ -21,25 +21,18 @@ export default function ReviewsList({ property_id }) {
         console.log(review)
         return (
           <li className="column reviewItem" key={review.review_id}>
-          <Link to={`/users/${review.user_id}`}><img src={review.guest_avatar} style={{ width: "50px", height: "50px", borderRadius: "50%" }} alt="" /></Link>
+          <Link to={localStorage.jsonwebtoken ?`/users/${review.user_id}` : "/protected"}><img src={review.guest_avatar} style={{ width: "50px", height: "50px", borderRadius: "50%" }} alt="" /></Link>
           <p>{review.rating}<span>⭐</span> | <span style={{ fontWeight: "bold" }}>{review.guest}</span></p>
           <p style={{ fontWeight: "bold" }}>Posted on {review.created_at.slice(0, 10)}</p>
           <p>{review.comment}</p>
         </li>
         )
       })}
-      {localStorage.jsonwebtoken ? 
             <Button>
-              <Link to={`/properties/${property_id}/post-review`}>
+              <Link to={localStorage.jsonwebtoken ? `/properties/${property_id}/post-review` : `/protected/`}>
               Write a review
               </Link>
           </Button>
-          :
-          <Button>
-            <Link to={`/protected/`}>
-            Write a review</Link>
-          </Button>
-      }
 
           {/* <PostReviewBtn property_id={property_id}/> */}
     </ul>

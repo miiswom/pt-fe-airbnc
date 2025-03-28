@@ -1,34 +1,32 @@
 import { useState, useEffect } from "react"
-import { fetchPropertyById } from "../utils/fetch";
-import updateOptions from "../utils/updateOptions";
 
 
-export default function PropertiesCarrousel({ properties }) {
+export default function CarrousselII({ properties }) {
   const [slides, setSlides] = useState([].flat());
   const [curr, setCurr] = useState(0);
 
-  console.log(properties)
+  console.log("properties", properties)
   useEffect(() => {
-    handleFetchPropertiesImg()
+    setSlides(properties)
   }, [])
 
   const prevSlide = () => setCurr(curr => curr === 0 ? slides.length - 1 : curr - 1)
   const nextSlide = () => setCurr(curr => curr === slides.length - 1 ? 0 : curr + 1)
 
-  const handleFetchPropertiesImg = async () => {
-    const promises = properties.map(property => {
-      return fetch(`https://pt-be-airbnc.onrender.com/api/properties/${property.property_id}`)
-        .then(res => res.json().then(data => {
-          console.log(data.property)
-          return data.property.images
-        }))
-    })
+  // const handleFetchPropertiesImg = async () => {
+  //   const promises = properties.map(property => {
+  //     return fetch(`https://pt-be-airbnc.onrender.com/api/properties/${property.property_id}`)
+  //       .then(res => res.json().then(data => {
+  //         console.log(data.property)
+  //         return data.property.images
+  //       }))
+  //   })
 
-    Promise.all(promises).then(urls => {
-      const returnedUrls = urls.map(url => url).slice(0, 5)
-      setSlides(returnedUrls)
-    })
-  }
+  //   Promise.all(promises).then(urls => {
+  //     const returnedUrls = urls.map(url => url).slice(0, 5)
+  //     setSlides(returnedUrls)
+  //   })
+  // }
 
 
   return (

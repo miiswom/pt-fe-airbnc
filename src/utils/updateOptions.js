@@ -8,7 +8,7 @@ export default function updateOptions(options) {
     } else if(location.href === "/protected") {
       history.back(-1)
     } else {
-      alert('You need to sign-up or login.');
+      // alert('You need to sign-up or login.');
       location.assign("/signin")
       // return
       // location.assign("/signin")
