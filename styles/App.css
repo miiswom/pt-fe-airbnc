@@ -189,6 +189,11 @@ li {
   padding: 10px
 }
 
+.small-container {
+  background: white;
+  border: "none";
+}
+
 
 
 /* .signup-form label {
@@ -246,5 +251,7 @@ li {
   .hidden {
     display: none;
   }
+
+
 }
 
