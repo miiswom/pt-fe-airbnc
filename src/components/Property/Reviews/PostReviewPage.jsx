@@ -12,29 +12,23 @@ export default function PostReviewPage() {
   const [starCount, setStarCount] = useState(0)
   const [textareaVal, setTextAreaVal] = useState("")
   const [isSubmitted, setIsSubmitted] = useState(false)
-  // const start = Array.fill()
   const stars = useRef(null);
-
-  // console.log("property_id", property_id)
-  // console.log("stars", stars)
 
   useEffect(() => {
     fetch(`https://pt-be-airbnc.onrender.com/api/properties/${property_id}`, updateOptions())
-      .then(property => {
+    .then(res => res.json())
+      .then(({property}) => {
         setIsLoading(false)
+        console.log(property)
         setProperty(property)
       })
   }, [property_id, stars, starCount])
-  // console.log(property)
 
   function countStars(e) {
     setStarCount(e.target.parentNode.id);
-    // console.log("starCount", starCount)
     if (stars !== null) {
-      console.log("star", stars.current.children.length)
       for (let star of stars.current.children) {
         if (star.id <= e.target.parentNode.id) {
-          console.log(star)
           star.classList.remove("unchecked")
           star.classList.add("checked")
         } else {
@@ -45,12 +39,7 @@ export default function PostReviewPage() {
   }
 
   function postReview(e) {
-    // guest_id is 1 by default
-    // rating is the starCount
-    // rating is the input.value
-    // fetch()
     e.preventDefault()
-    console.log(starCount)
     setIsSubmitted(true)
 
     if(starCount === 0) {
@@ -84,9 +73,6 @@ export default function PostReviewPage() {
     return curr
   })
   }
-  console.log(textareaVal)
-
-  // console.log("starCount", starCount)
 
 
   if (isLoading) return <p>Loading page...</p>

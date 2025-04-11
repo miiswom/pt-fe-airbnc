@@ -50,9 +50,26 @@ export async function fetchUserById(id) {
 export async function fetchProtectedRoute() {
   await fetch("https://pt-be-airbnc.onrender.com/api/protected", updateOptions())
   .then(res => res.json())
-
-  // return data
 }
+
+export async function fetchUserLogin(email, password) {
+  const loginRequest = await fetch(`https://pt-be-airbnc.onrender.com/api/signin`,
+    {
+      method: "POST",
+      headers: { "Content-type": "application/json" },
+      body: JSON.stringify( {email, password})
+    })
+    .then(res => res.json())
+    
+    return loginRequest;
+};
+
+export async function fetchAllProperties(sortValue) {
+  const properties = await fetch(`https://pt-be-airbnc.onrender.com/api/properties?sort=${sortValue}`)
+      .then((res) => res.json())
+    return properties
+}
+
 // export async function fetchUniqueProperties(sortValue) {
 //   const sortedProperties = await fetch(`https://pt-be-airbnc.onrender.com/api/properties?sort=${sortValue}`)
 //   .then((res) => res.json())

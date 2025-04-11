@@ -18,10 +18,9 @@ export default function ReviewsList({ property_id }) {
     < div className=" reviewList">
      <ul >
       {reviewsList.map((review) => {
-        console.log(review)
         return (
           <li className="column reviewItem" key={review.review_id}>
-          <Link to={localStorage.jsonwebtoken ?`/users/${review.user_id}` : "/protected"}><img src={review.guest_avatar} style={{ width: "50px", height: "50px", borderRadius: "50%" }} alt="" /></Link>
+          <Link to={localStorage.jsonwebtoken ?`/users/${review.user_id}` : "/unauthorised"}><img src={review.guest_avatar} style={{ width: "50px", height: "50px", borderRadius: "50%" }} alt="" /></Link>
           <p>{review.rating}<span>⭐</span> | <span style={{ fontWeight: "bold" }}>{review.guest}</span></p>
           <p style={{ fontWeight: "bold" }}>Posted on {review.created_at.slice(0, 10)}</p>
           <p>{review.comment}</p>
@@ -29,7 +28,7 @@ export default function ReviewsList({ property_id }) {
         )
       })}
             <Button>
-              <Link to={localStorage.jsonwebtoken ? `/properties/${property_id}/post-review` : `/protected/`}>
+              <Link to={localStorage.jsonwebtoken ? `/properties/${property_id}/post-review` : `/unauthorised/`}>
               Write a review
               </Link>
           </Button>

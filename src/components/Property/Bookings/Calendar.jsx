@@ -2,9 +2,7 @@
 import {useState, useEffect, use} from 'react'
 import 'react-dates/initialize';
 import 'react-dates/lib/css/_datepicker.css'
-
 import { DateRangePicker } from 'react-dates';
-import DatePresets from './DatePresets';
 import updateOptions from '../../../utils/updateOptions';
 
 export default function Calendar({property_id}) {
@@ -14,13 +12,11 @@ export default function Calendar({property_id}) {
   const [dateInput, setDateInput] = useState(null)
   const [isSubmitted, setOnSubmitted] = useState(true)
 
-  console.log(dateInput)
-  console.log(startDate)
-
   function handleBooking(e) {
     e.preventDefault()
     const book_in_date = e.target[0].value.split("/").reverse().join("/");
     const book_out_date = e.target[1].value.split("/").reverse().join("/");
+
 
     setOnSubmitted(false)
 
@@ -28,8 +24,6 @@ export default function Calendar({property_id}) {
       setOnSubmitted(true)
       return
     }
-
-    console.log(book_in_date, book_out_date)
     fetch(`https://pt-be-airbnc.onrender.com/api/properties/${property_id}/booking`, updateOptions(    {
       method: "POST",
       headers: {"Content-type": "application/json"},
@@ -49,40 +43,27 @@ export default function Calendar({property_id}) {
         setEndDate(null)
       } else if(data.msg.startsWith('Booking')) {
         alert(data.msg)
-        // redirect to a successful booking page ^^
+        // todo: redirect to a more thorough booking page 
       } else {
         console.log(data.msg)
         return
       }
-      console.log(data)
     })
   }
   return (
     <form onSubmit={(e) => handleBooking(e)}>
       <DateRangePicker
-      
-      startDate={startDate}
-      startDateId="start_id"
-      endDate={endDate}
-      enDateId="end_id"
-      onDatesChange={({startDate, endDate})=> {
+        startDate={startDate}
+        startDateId="start_id"
+        endDate={endDate}
+        enDateId="end_id"
+        onDatesChange={({startDate, endDate})=> {
         setStartDate(startDate)
         setEndDate(endDate)
       }}
       displayFormat={dateFormat}
       focusedInput={dateInput}
       onFocusChange={(e)=> setDateInput(e)}
-      // renderCalendarInfo={() => (
-      //   <DatePresets 
-      //   startDate={startDate}
-      //   endDate={endDate}
-      //   dateFormat={dateFormat}
-      //   handlePresets={(start, end) => {
-      //     setStartDate(start)
-      //     setEndDate(end)
-      //   }}
-      //   />
-      // )}
       />
       <div className='container'>
         <p style={{padding: "10px"}}><span style={{fontWeight: "bold"}}>Start date:&nbsp;</span>{startDate && startDate.format(new Date(startDate).toLocaleDateString("gb-GB"))}</p>

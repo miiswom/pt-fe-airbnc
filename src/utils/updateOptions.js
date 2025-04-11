@@ -1,6 +1,6 @@
 export default function updateOptions(options) {
     const update = { ...options };
-    if (localStorage.jsonwebtoken) {
+    if (localStorage.jsonwebtoken || location.href.endsWith('signup')) {
       update.headers = {
         ...update.headers,
         Authorization: `Bearer ${localStorage.jsonwebtoken}`,

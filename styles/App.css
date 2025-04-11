@@ -115,7 +115,10 @@ li {
   background: inherit;
   border: none;
   border-bottom: 1px solid grey;
-  cursor:none;
+  cursor: none;
+}
+
+.expandables {
   flex-direction: column;
 }
 
@@ -173,19 +176,28 @@ li {
 }
 
 .signup-form {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-  margin: 0 auto;
+  padding: 0px 35%
 }
 
 .signup-form label {
-  text-align: end;
-  line-height: 2.5em;
+  margin-bottom: 10px;
 }
 
+.signup-form input {
+  margin-bottom: 10px;
+  border: 1px solid grey;
+  padding: 10px
+}
+
+
+
+/* .signup-form label {
+  text-align: end;
+  line-height: 2.5em;
+} */
+
 .user-card {
-  width: 90%;
+  width: 40%;
   gap: 10px;
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
@@ -198,17 +210,41 @@ li {
   gap: 0.3em;
 }
 
-@media screen and (min-width: 700px) { 
+.menu-dropout {
+  display: none;
+}
+
+.auth-options {
+  display: flex;
+  flex-direction: row;
+}
+
+@media screen and (max-width: 800px) { 
   .expandables {
     flex-direction: row;
   }
 
   .signup-form {
-    grid-template-columns: 1fr 2fr 1fr 2fr;
+    padding: 0px 10%
   }
 
   .user-card {
-    width: 40%;
+    width: 90%;
+  }
+
+  .auth-options {
+    flex-direction: column;
+  }
+
+  .menu-dropout {
+    display: flex;
+    justify-content: end;
+    margin: 10px auto;
+    padding: 15px;
+  }
+
+  .hidden {
+    display: none;
   }
 }
 

@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import Header from "../Main/Header"
 import { useAuth } from '../../contexts/AuthContext';
+import { fetchUserLogin } from '../../utils/fetch';
 
 export default function SignInForm() {
   const [email, setEmail] = useState("");
@@ -26,40 +27,23 @@ export default function SignInForm() {
     e.preventDefault()
     setIsSubmitted(true)
 
-    fetch(`https://pt-be-airbnc.onrender.com/api/signin`,
-      {
-        method: "POST",
-        headers: { "Content-type": "application/json" },
-        body: JSON.stringify(
-          {
-            email: email,
-            password: password
-          }
-        )
-      }
-    )
-      .then(res => res.json())
+    fetchUserLogin(email, password)
       .then(async data => {
         if (!data.success) {
           alert("The credentials you've entered are incorrect.")
           setIsSubmitted(false)
-
-          // window.reload()
           return false
         } else {
-          // console.log("data", data)
           localStorage.setItem('jsonwebtoken', data.token);
-          console.log(data.user_id)
+          // console.log(data.user_id)
           await auth.signin(data.user_id)
         }
       })
       .then((data) => {
-        console.log(data === undefined)
         if(data === undefined) {
           history.back(-1)
         }
       })
-
   }
 
 

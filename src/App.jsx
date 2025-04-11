@@ -1,17 +1,15 @@
 import '../styles/App.css'
 import '../styles/reset.css'
 import { Routes, Route, useSearchParams } from 'react-router'
-import Header from './components/Main/Header'
 import Properties from './components/Properties/Properties'
 import { useState } from 'react'
 import SingleProperty from './components/Property/SingleProperty'
 import PostReviewPage from './components/Property/Reviews/PostReviewPage'
 import SignInForm from './components/Auth/SigninForm'
-import UserProvider from './providers/AuthProvider'
 import Signout from './components/Auth/Signout'
 import SignupForm from './components/Auth/SignupForm'
 import UserProfile from './components/Users/UserProfile'
-import ProtectedRoute from "./components/Auth/ProtectedRoute"
+import Unauthorised from './components/Auth/Unauthorised'
 
 function App() {
   const [sortValue, setSortValue] = useState("property_id");
@@ -77,17 +75,18 @@ function App() {
         />
 
       <Route
-        path='/protected'
+        path='/unauthorised'
         element={<SignInForm/>}
        />
     </Routes>
 
-
-
   )
 }
 
-// const property_type = searchParams.get("property_type");
-// const max_price = searchParams.get("max_price")
+// have a component MenuDropout  
+// it should have a property of none by default || login/signup/My profile should have a prop of none when it reaches 800
+// onClick, the MenuDropout should display a list (select?) of option (login/signup/Myprofile)
+// 
+
 
 export default App

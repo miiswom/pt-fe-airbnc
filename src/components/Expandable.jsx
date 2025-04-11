@@ -1,7 +1,6 @@
 import {useState} from 'react'
 
 export default function Expandable({children, text}) {
-  // console.log(children)
   const [showContent, setShowContent] = useState(false);
 
   function handleClick() {
