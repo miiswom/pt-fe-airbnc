@@ -104,13 +104,3 @@ You can easily redeploy by pushing changes to the `main` branch.
 This project is open-source and available under the [MIT License](LICENSE).
 
 ---
-
-**Optional add-on:** You can also include a **Future Improvements** section if you plan to add things like:
-
-- Add booking functionality
-- User authentication (Sign In/Sign Up)
-- Listing details page
-- Search filters and sorting
-- Backend integration (e.g., Firebase, Node.js API)
-
----
