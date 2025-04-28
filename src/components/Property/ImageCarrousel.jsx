@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react"
-
+import { useState, useEffect } from "react";
+import LeftBtn from "../../../styles/assets/chevron-left.svg"
 
 export default function CarrousselII({ properties }) {
   const [slides, setSlides] = useState([].flat());
@@ -39,12 +39,12 @@ export default function CarrousselII({ properties }) {
         <button
           onClick={prevSlide}
           style={{ borderRadius: "50%", background: "white" }}>
-          <img src="../../styles/assets/chevron-left.svg" alt="" />
+          <img src="../../../styles/assets/chevron-left.svg" alt="left button" />
         </button>
         <button
           onClick={nextSlide}
           style={{ borderRadius: "50%", background: "white" }}>
-          <img src="../../styles/assets/chevron-right.svg" alt="" />
+          <img src="../../../styles/assets/chevron-right.svg" alt="right button" />
         </button>
       </div>
       {/* button for showing current slide*/}
