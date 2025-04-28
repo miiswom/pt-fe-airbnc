@@ -1,8 +1,3 @@
-Absolutely — adding **user stories** will make your README look much more professional and serious, like a real product spec!  
-Here’s an enhanced version of your `README.md` with **user stories** included under the **Features** section:
-
----
-
 # AirBnc
 
 A modern Airbnb clone built with a focus on beautiful design, responsiveness, and user-friendly interactions.  
