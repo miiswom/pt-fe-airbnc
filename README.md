@@ -46,7 +46,7 @@ To run this project locally:
 
 1. **Clone the repo**
    ```bash
-   git clone https://github.com/miiswom/pt-fe-airbnc/)
+   git clone https://github.com/miiswom/pt-fe-airbnc/
    ```
 2. **Navigate into the project directory**
    ```bash
