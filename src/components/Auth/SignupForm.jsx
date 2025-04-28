@@ -103,7 +103,7 @@ export default function SignupForm() {
               <option value="host">Host</option>
             </select>
 
-            <label htmlFor="avatar" >Avatar link:</label>
+            <label htmlFor="avatar" >Avatar URL link:</label>
             <input type="url" required placeholder="Enter the link of your avatar"
               onChange={(e) => handleTargetValue(setAvatar, e.target.value)}
               value={avatar} />
