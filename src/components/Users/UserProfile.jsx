@@ -22,31 +22,36 @@ export default function UserProfile() {
   // console.log(userProperties.length)
 
   useEffect(() => {
-
-    Promise.all([
-      fetchUserById(id),
-      fetch(`https://pt-be-airbnc.onrender.com/api/users/${id}/properties`, updateOptions()),
-      fetch(`https://pt-be-airbnc.onrender.com/api/users/${id}/bookings`, updateOptions()),
-      fetch(`https://pt-be-airbnc.onrender.com/api/users/${id}/reviews`, updateOptions())
-    ])
-      .then(res => {
-        return Promise.all([
-          res[0].json(), // [0]user
-          res[1].json(), // [1]properties
-          res[2].json(), // [2]bookings
-          res[3].json() // // [3]reviews
-        ]
-        )
-      })
-      .then(data => {
-        setIsLoading(false)
-        setUserInfo(data[0].user)
-        setUserProperties(data[1].properties)
-        setUserBookings(data[2].bookings)
-        setUserReviews(data[3].reviews)
-      })
-      .then(() => {
-      })
+    fetchUserById(id)
+    .then(res=>res.json())
+    .then(data => {
+      setIsLoading(false)
+      setUserInfo(data.user)
+    }) 
+    // Promise.all([
+    //   fetchUserById(id),
+    //   fetch(`https://pt-be-airbnc.onrender.com/api/users/${id}/properties`, updateOptions()),
+    //   fetch(`https://pt-be-airbnc.onrender.com/api/users/${id}/bookings`, updateOptions()),
+    //   fetch(`https://pt-be-airbnc.onrender.com/api/users/${id}/reviews`, updateOptions())
+    // ])
+    //   .then(res => {
+    //     return Promise.all([
+    //       res[0].json(), // [0]user
+    //       res[1].json(), // [1]properties
+    //       res[2].json(), // [2]bookings
+    //       res[3].json() // // [3]reviews
+    //     ]
+    //     )
+    //   })
+    //   .then(data => {
+    //     setIsLoading(false)
+    //     setUserInfo(data[0].user)
+    //     setUserProperties(data[1].properties)
+    //     setUserBookings(data[2].bookings)
+    //     setUserReviews(data[3].reviews)
+    //   })
+    //   .then(() => {
+    //   })
   }, [])
 
   // useEffect(() => {
@@ -92,8 +97,9 @@ export default function UserProfile() {
             <img style={{ maxWidth: "100%" }} src={userInfo.avatar} alt="" />
           </div>
           <div className="column user-card-info" style={{ width: "30%", margin: "0 auto" }}>
-            <p>Reviews received: __</p>
-            <p>Average rating: __ </p>
+            {/* <p>Reviews received: __</p>
+            <p>Average rating: __ </p> */}
+            <p>Status: {userInfo.role}</p>
             {/*<p>Properties listed: {userProperties.length}</p>*/}
           </div>
         </div>
@@ -111,12 +117,12 @@ export default function UserProfile() {
         {/*block 4
         - - properties listings kinda carousel* 
         */}
-        <section className="container">
+        {/* <section className="container">
           <h2 style={{ textAlign: "center", fontSize: "1.3em", fontWeight: "bold", marginBottom: "10px" }}>Property listings:</h2>
           <PropertiesCarrousel properties={userProperties} />
-        </section>
+        </section> */}
 
-        <PropertyReviewsCarrousel properties={userProperties} />
+        {/* <PropertyReviewsCarrousel properties={userProperties} /> */}
 
       </section>
     </>
