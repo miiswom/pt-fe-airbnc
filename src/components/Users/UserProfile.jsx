@@ -21,40 +21,33 @@ export default function UserProfile() {
   console.log("userReviews", userReviews)
   // console.log(userProperties.length)
 
- useEffect(() => {
- fetchUserById(id)
- .then(res => res.json())
- .then(data => {
-  setIsLoading(false)
-  setUserInfo(data.user)
- })
+  useEffect(() => {
 
-
-  //   Promise.all([
-  //     fetchUserById(id),
-  //     fetch(`https://pt-be-airbnc.onrender.com/api/users/${id}/properties`, updateOptions()),
-  //     fetch(`https://pt-be-airbnc.onrender.com/api/users/${id}/bookings`, updateOptions()),
-  //     fetch(`https://pt-be-airbnc.onrender.com/api/users/${id}/reviews`, updateOptions())
-  //   ])
-  //     .then(res => {
-  //       return Promise.all([
-  //         res[0].json(), // [0]user
-  //         res[1].json(), // [1]properties
-  //         res[2].json(), // [2]bookings
-  //         res[3].json() // // [3]reviews
-  //       ]
-  //       )
-  //     })
-  //     .then(data => {
-  //       setIsLoading(false)
-  //       setUserInfo(data[0].user)
-  //       setUserProperties(data[1].properties)
-  //       setUserBookings(data[2].bookings)
-  //       setUserReviews(data[3].reviews)
-  //     })
-  //     .then(() => {
-  //     })
-   }, [])
+    Promise.all([
+      fetchUserById(id),
+      fetch(`https://pt-be-airbnc.onrender.com/api/users/${id}/properties`, updateOptions()),
+      fetch(`https://pt-be-airbnc.onrender.com/api/users/${id}/bookings`, updateOptions()),
+      fetch(`https://pt-be-airbnc.onrender.com/api/users/${id}/reviews`, updateOptions())
+    ])
+      .then(res => {
+        return Promise.all([
+          res[0].json(), // [0]user
+          res[1].json(), // [1]properties
+          res[2].json(), // [2]bookings
+          res[3].json() // // [3]reviews
+        ]
+        )
+      })
+      .then(data => {
+        setIsLoading(false)
+        setUserInfo(data[0].user)
+        setUserProperties(data[1].properties)
+        setUserBookings(data[2].bookings)
+        setUserReviews(data[3].reviews)
+      })
+      .then(() => {
+      })
+  }, [])
 
   // useEffect(() => {
 
@@ -87,7 +80,7 @@ export default function UserProfile() {
 
       <Header />
       <section className="container">
-        <h1 style={{ fontWeight: "bold", fontSize: "1.5em", textAlign: "center" }}><span style={{ textTransform: "capitalize" }}>Welcome back </span>{userInfo.first_name} {userInfo.surname} 👋 </h1>
+        <h1 style={{ fontWeight: "bold", fontSize: "1.5em", textAlign: "center" }}><span style={{ textTransform: "capitalize" }}>{userInfo.role} profile: </span>{userInfo.first_name} {userInfo.surname} </h1>
         {/*block 1: 
           - host avatar, first_name, surname, role
           - total num of reviews received for all properties
@@ -99,10 +92,9 @@ export default function UserProfile() {
             <img style={{ maxWidth: "100%" }} src={userInfo.avatar} alt="" />
           </div>
           <div className="column user-card-info" style={{ width: "30%", margin: "0 auto" }}>
-            <p>Your status: {userInfo.role.toUpperCase()}</p>
-            {/* <p>Reviews received: __</p>
+            <p>Reviews received: __</p>
             <p>Average rating: __ </p>
-            {<p>Properties listed: </p>} */}
+            {/*<p>Properties listed: {userProperties.length}</p>*/}
           </div>
         </div>
 
@@ -119,11 +111,12 @@ export default function UserProfile() {
         {/*block 4
         - - properties listings kinda carousel* 
         */}
-        {/* <section className="container">
+        <section className="container">
           <h2 style={{ textAlign: "center", fontSize: "1.3em", fontWeight: "bold", marginBottom: "10px" }}>Property listings:</h2>
           <PropertiesCarrousel properties={userProperties} />
-        </section> */}
+        </section>
 
+        <PropertyReviewsCarrousel properties={userProperties} />
 
       </section>
     </>
@@ -137,8 +130,4 @@ export default function UserProfile() {
           <p>{userInfo.email ? "✔️ Verified email address" : null}</p>
           <p>{userInfo.phone_number ? "✔️ Verified phone number" : null}</p>
         </section>
-
-               <PropertyReviewsCarrousel properties={userProperties} />
-
   */}
-
