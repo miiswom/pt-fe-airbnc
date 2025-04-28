@@ -38,5 +38,17 @@
   "peerDependencies": {
     "react": "^17.0.0 || ^18.0.0 || ^19.0.0",
     "react-dom": "^17.0.0 || ^18.0.0 || ^19.0.0"
-  }
+  },
+  "description": "A modern Airbnb clone built with a focus on beautiful design, responsiveness, and user-friendly interactions.   Deployed live at: [https://air-bnc.netlify.app/](https://air-bnc.netlify.app/)",
+  "main": "eslint.config.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/miiswom/pt-fe-airbnc.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/miiswom/pt-fe-airbnc/issues"
+  },
+  "homepage": "."
 }
