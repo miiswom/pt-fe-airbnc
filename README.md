@@ -1,6 +1,6 @@
 # AirBnc
 
-A modern Airbnb clone built with a focus on beautiful design, responsiveness, and user-friendly interactions.  
+A modern Airbnb clone built with a focus on minimalist design, responsiveness, and user-friendly interactions.  
 Deployed live at: [https://air-bnc.netlify.app/](https://air-bnc.netlify.app/)
 
 ## ✨ Features
