@@ -85,17 +85,17 @@ You can easily redeploy by pushing changes to the `main` branch.
 
 ## 📸 Screenshots
 
-![Image](https://github.com/user-attachments/assets/a3b40265-ccfe-47d6-9c6d-ecff9f95b629)
-
-![Image](https://github.com/user-attachments/assets/6065c1b3-52ab-4cb6-b1f0-4b8193b938a1)
-
-![Image](https://github.com/user-attachments/assets/ffa96530-681e-4b9a-9833-61c20713b08f)
-
-![Image](https://github.com/user-attachments/assets/02af1168-04e4-4361-b816-84a40d401af9)
+![Image](https://github.com/user-attachments/assets/3aa7ef0e-c3ab-4b23-b14f-5c006d11bbd9)
 
 ![Image](https://github.com/user-attachments/assets/1903b2af-5de8-43fa-b7b1-38b7e61c94d1)
 
-![Image](https://github.com/user-attachments/assets/3aa7ef0e-c3ab-4b23-b14f-5c006d11bbd9)
+![Image](https://github.com/user-attachments/assets/02af1168-04e4-4361-b816-84a40d401af9)
+
+![Image](https://github.com/user-attachments/assets/ffa96530-681e-4b9a-9833-61c20713b08f)
+
+![Image](https://github.com/user-attachments/assets/6065c1b3-52ab-4cb6-b1f0-4b8193b938a1)
+
+![Image](https://github.com/user-attachments/assets/a3b40265-ccfe-47d6-9c6d-ecff9f95b629)
 
 ---
 
