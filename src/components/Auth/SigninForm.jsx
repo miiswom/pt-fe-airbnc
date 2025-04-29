@@ -2,6 +2,7 @@ import { useState } from 'react'
 import Header from "../Main/Header"
 import { useAuth } from '../../contexts/AuthContext';
 import { fetchUserLogin } from '../../utils/fetch';
+import Footer from '../Main/Footer';
 
 export default function SignInForm() {
   const [email, setEmail] = useState("");
@@ -97,6 +98,7 @@ export default function SignInForm() {
         </form>
       </div>
     </>
+    
 
   )
 }

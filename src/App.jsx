@@ -9,8 +9,7 @@ import SignInForm from './components/Auth/SigninForm'
 import Signout from './components/Auth/Signout'
 import SignupForm from './components/Auth/SignupForm'
 import UserProfile from './components/Users/UserProfile'
-import Unauthorised from './components/Auth/Unauthorised'
-
+import Footer from './components/Main/Footer'
 function App() {
   const [sortValue, setSortValue] = useState("property_id");
   const [searchParams, setSearchParams] = useSearchParams(
@@ -34,51 +33,56 @@ function App() {
   // />
 
   return (
-    <Routes>
-      <Route
-        path='/'
-        element={<Properties
-          setSortValue={setSortValue}
-          sortValue={sortValue}
-          searchParams={searchParams}
-          setSearchParams={setSearchParams}
-          property_type={property_type}
-          max_price={max_price}
+    <>
+      <Routes>
+        <Route
+          path='/'
+          element={<Properties
+            setSortValue={setSortValue}
+            sortValue={sortValue}
+            searchParams={searchParams}
+            setSearchParams={setSearchParams}
+            property_type={property_type}
+            max_price={max_price}
 
-        />} />
-      <Route
-        path="/properties/:property_id"
-        element={<SingleProperty />} />
+          />} />
+        <Route
+          path="/properties/:property_id"
+          element={<SingleProperty />} />
 
-      <Route
-        path="/properties/:property_id/post-review"
-        element={<PostReviewPage />} />
+        <Route
+          path="/properties/:property_id/post-review"
+          element={<PostReviewPage />} />
 
-      <Route
-        path="/signin"
-        element={<SignInForm />}
-      />
-
-      <Route
-        path="/signout"
-        element={<Signout/>}
-      />
-
-      <Route 
-        path='/signup'
-        element={<SignupForm/>}
-        />
-        
-      <Route 
-        path='/users/:id'
-        element={<UserProfile/>}
+        <Route
+          path="/signin"
+          element={<SignInForm />}
         />
 
-      <Route
-        path='/unauthorised'
-        element={<SignInForm/>}
-       />
-    </Routes>
+        <Route
+          path="/signout"
+          element={<Signout />}
+        />
+
+        <Route
+          path='/signup'
+          element={<SignupForm />}
+        />
+
+        <Route
+          path='/users/:id'
+          element={<UserProfile />}
+        />
+
+        <Route
+          path='/unauthorised'
+          element={<SignInForm />}
+        />
+      </Routes>
+      <Footer />
+
+    </>
+
 
   )
 }

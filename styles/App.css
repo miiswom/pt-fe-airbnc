@@ -8,11 +8,23 @@
 /******************************************
 /* BASE STYLES
 /*******************************************/
-body {
-  background: #F9F3F5;
 
+html, body {
+  
+  height: 100%;
+  margin: 0;
+  padding: 0;
 }
 
+body {
+  background: #F9F3F5;
+  width: 100%;
+  display: table;
+}
+
+footer {
+  display: table-row;
+}
 a, button {
   margin: 0 auto;
   display: block;
@@ -231,6 +243,46 @@ li {
   flex-direction: row;
 }
 
+.small-icons {
+  width: 20%;
+}
+
+.footer-main > * {
+  /* border: 1px solid red; */
+}
+
+.footer-main {
+  padding: 40px 30%;
+  background: #d8d8d8;
+  color: grey;
+  font-size:  1.2em;
+   text-align: center;
+}
+
+
+.footer-nav li,
+.footer-main a {
+  display: inline-block; 
+}
+
+.footer-nav ul {
+  display: flex;
+  justify-content: space-around;
+}
+
+.footer-nav:first-child{
+  margin: 0 auto;
+  width: 100%;
+}
+
+.footer-main p {
+  margin: 0 auto;
+}
+
+.icons-list {
+  margin: 20px auto;
+  width: 40%;
+}
 @media screen and (max-width: 800px) { 
   .expandables {
     flex-direction: row;
