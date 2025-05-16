@@ -36,7 +36,6 @@ export default function SignInForm() {
           return false
         } else {
           localStorage.setItem('jsonwebtoken', data.token);
-          // console.log(data.user_id)
           await auth.signin(data.user_id)
         }
       })

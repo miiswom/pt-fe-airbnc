@@ -14,13 +14,6 @@ export default function UserProfile() {
   const [userBookings, setUserBookings] = useState();
   const [userProperties, setUserProperties] = useState();
 
-  //console.log(userReview)
-  console.log("userInfo", userInfo)
-  console.log("userBookings", userBookings)
-  console.log("userProperties", userProperties)
-  console.log("userReviews", userReviews)
-  // console.log(userProperties.length)
-
   useEffect(() => {
     fetchUserById(id)
     .then(res=>res.json())

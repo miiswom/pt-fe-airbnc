@@ -20,18 +20,8 @@ export default function SignupForm() {
     return fn(val)
   }
   
-  console.log({
-    first_name: firstName,
-    surname: surname,
-    email: email,
-    phone_number: phoneNumber,
-    role: role, 
-    avatar: avatar,
-    password: password
-  })
   function handleSignup(e) {
     e.preventDefault()
-    console.log("here")
     fetch(`https://pt-be-airbnc.onrender.com/api/signup`, updateOptions({
       method: "POST",
       headers: {"Content-type": "application/json"},
@@ -47,7 +37,6 @@ export default function SignupForm() {
     }))
     .then(res => res.json())
     .then(async data => {
-      console.log(data)
       if(data.success) {
         alert(data.msg)
         localStorage.setItem('jsonwebtoken', data.token);

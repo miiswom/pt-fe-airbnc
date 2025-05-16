@@ -57,7 +57,6 @@ export default function Toolbar({ setSearchParams }) {
 
           <div className="row">
             <p>&nbsp;Price range:&nbsp;</p>
-            {/* <p>{minPriceRangeVal}</p> */}
             <p style={{ margin: "0 auto" }}>{priceRangeVal}</p>
             <input type="range"
               className="accent"
@@ -65,9 +64,6 @@ export default function Toolbar({ setSearchParams }) {
               min={minPriceRangeVal}
               max={maxPriceRangeVal}
               onChange={(e) => handlePriceRangeInput(e)}
-            // onChange={alert(priceRangeVal)}
-            // onMouseOut={filterPropertiesByPriceRange}
-            // onMouseUp={(e) => handleFinal(e)}
             />
             <p>{maxPriceRangeVal}</p>
 
@@ -81,6 +77,3 @@ export default function Toolbar({ setSearchParams }) {
 
   )
 }
-
-// onChange treat like an input
-// onMouseUp filter the properties

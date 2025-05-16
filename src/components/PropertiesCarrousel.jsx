@@ -7,7 +7,6 @@ export default function PropertiesCarrousel({ properties }) {
   const [slides, setSlides] = useState([].flat());
   const [curr, setCurr] = useState(0);
 
-  console.log(properties)
   useEffect(() => {
     handleFetchPropertiesImg()
   }, [])
@@ -19,7 +18,6 @@ export default function PropertiesCarrousel({ properties }) {
     const promises = properties.map(property => {
       return fetch(`https://pt-be-airbnc.onrender.com/api/properties/${property.property_id}`)
         .then(res => res.json().then(data => {
-          console.log(data.property)
           return data.property.images
         }))
     })

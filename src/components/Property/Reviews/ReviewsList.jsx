@@ -32,8 +32,6 @@ export default function ReviewsList({ property_id }) {
               Write a review
               </Link>
           </Button>
-
-          {/* <PostReviewBtn property_id={property_id}/> */}
     </ul>
     </div >
    

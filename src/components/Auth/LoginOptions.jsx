@@ -5,7 +5,6 @@ import Button from "../Button";
 export default function LoginOptions({ hiddenClass, setHiddenClass }) {
   const authVal = useAuth();
   const loggedUser = JSON.parse(authVal.currentUser) || "none"
-  console.log("sdksdsk", hiddenClass)
 
   return (
     <div className={`row auth-options ${hiddenClass ? "hidden" : null}`} name="" id="" style={{ gap: "30px", margin: "0 auto" }}>

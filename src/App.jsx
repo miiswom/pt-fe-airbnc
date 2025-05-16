@@ -10,6 +10,7 @@ import Signout from './components/Auth/Signout'
 import SignupForm from './components/Auth/SignupForm'
 import UserProfile from './components/Users/UserProfile'
 import Footer from './components/Main/Footer'
+
 function App() {
   const [sortValue, setSortValue] = useState("property_id");
   const [searchParams, setSearchParams] = useSearchParams(
@@ -20,17 +21,6 @@ function App() {
 
   const property_type = searchParams.get("property_type")
   const max_price = searchParams.get("max_price");
-  // console.log("property_type", {property_type}) 
-  // console.log("max_price", {max_price})  
-
-  // <Header
-  //   setSortValue={setSortValue}
-  //   sortValue={sortValue}
-  //   searchParams={searchParams}
-  //   setSearchParams={setSearchParams}
-  // // property_type={property_type}
-  // // max_price={max_price}
-  // />
 
   return (
     <>
@@ -80,17 +70,8 @@ function App() {
         />
       </Routes>
       <Footer />
-
     </>
-
-
   )
 }
-
-// have a component MenuDropout  
-// it should have a property of none by default || login/signup/My profile should have a prop of none when it reaches 800
-// onClick, the MenuDropout should display a list (select?) of option (login/signup/Myprofile)
-// 
-
 
 export default App
