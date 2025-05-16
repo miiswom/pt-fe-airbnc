@@ -4,6 +4,7 @@ import Header from "../Main/Header";
 import PropertiesList from "./PropertiesList";
 import Toolbar from "../Main/Toolbar";
 import { fetchAllProperties } from "../../utils/fetch";
+import SkeletonGrid from "./SkeletonList";
 
 export default function Properties({ setSortValue, sortValue, searchParams, setSearchParams, property_type, max_price, maxPriceRangeVal, setMaxPriceRangeVal }) {
   const [properties, setProperties] = useState([])
@@ -41,8 +42,10 @@ export default function Properties({ setSortValue, sortValue, searchParams, setS
   if (isLoading) return (<>
       <title>AirBNC</title>
       <Header />
+      <Toolbar />
       <div className="container">
-        <h1>Thank you for you patience, properties are loading...</h1>
+        {/* <h1>Thank you for you patience, properties are loading...</h1> */}
+        <SkeletonGrid />
       </div>
     </>)
 
