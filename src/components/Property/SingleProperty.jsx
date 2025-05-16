@@ -7,6 +7,7 @@ import FavouriteBtn from './Favourite/FavouriteBtn';
 import Calendar from './Bookings/Calendar';
 import { fetchFavourites, fetchPropertyById } from '../../utils/fetch';
 import ImageCarrousel from './ImageCarrousel';
+import SkeletonProperty from './SkeletonProperty';
 
 export default function SingleProperty() {
   const { property_id } = useParams()
@@ -42,7 +43,7 @@ export default function SingleProperty() {
     <>
       <Header />
       <div className="container">
-        <h1>Loading property info...</h1>
+        <SkeletonProperty />
       </div>
     </>)  
     return (
